@@ -4,7 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="725bc41c-a2d1-48d5-9700-3a57c006ae2b" name="Changes" comment="" />
+    <list default="true" id="725bc41c-a2d1-48d5-9700-3a57c006ae2b" name="Changes" comment="v0 -&gt; v0.1 build">
+      <change afterPath="$PROJECT_DIR$/guess_area/src/components/Footer.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/guess_area/src/components/Header.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/guess_area/src/components/MapComponent.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/guess_area/src/components/Sidebar.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guess_area/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/guess_area/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guess_area/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/guess_area/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guess_area/eslint.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/guess_area/eslint.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guess_area/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/guess_area/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guess_area/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/guess_area/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guess_area/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/guess_area/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guess_area/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/guess_area/src/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guess_area/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/guess_area/src/App.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guess_area/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/guess_area/src/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guess_area/src/main.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/guess_area/src/main.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guess_area/vite.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/guess_area/vite.config.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -13,6 +30,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "UESSENCE"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/shadow4733/SSRVP.git",
+    "accountId": "cb95ea34-02ee-4fca-b4b1-ff056122c450"
+  }
+}]]></component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
 }</component>
@@ -29,7 +58,7 @@
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "git-widget-placeholder": "master",
     "javascript.preferred.runtime.type.id": "node",
-    "last_opened_file_path": "/home/shadow473/SSRVP",
+    "last_opened_file_path": "C:/Users/kay-y/PycharmProjects/SSRVP/guess_area",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -38,13 +67,19 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\kay-y\PycharmProjects\SSRVP\guess_area" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-9b0f141eb926-JavaScript-WS-253.31033.133" />
+        <option value="bundled-python-sdk-d7ad00fb9fc3-c546a90a8094-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-242.23726.102" />
       </set>
     </attachedChunks>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="725bc41c-a2d1-48d5-9700-3a57c006ae2b" name="Changes" comment="" />
@@ -59,5 +94,11 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Add files via upload" />
+    <MESSAGE value="v" />
+    <MESSAGE value="v0 -&gt; v0.1 build" />
+    <option name="LAST_COMMIT_MESSAGE" value="v0 -&gt; v0.1 build" />
   </component>
 </project>
