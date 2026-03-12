@@ -1,6 +1,6 @@
-from sqlalchemy import Column, Integer, String, Float, Text, DECIMAL
+from sqlalchemy import Column, Integer, String, Text, DECIMAL
 from sqlalchemy.orm import relationship
-from database import Base
+from ..database import Base
 
 class City(Base):
     __tablename__ = 'cities'
