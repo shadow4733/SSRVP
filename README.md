@@ -128,8 +128,6 @@ src/
 | `city_id` | INTEGER REFERENCES cities(id) | Предложенный город |
 | `guessed_lat` | DECIMAL(9,6) | Широта клика игрока |
 | `guessed_lng` | DECIMAL(9,6) | Долгота клика игрока |
-| `actual_lat` | DECIMAL(9,6) | Реальная широта (денормализация для удобства) |
-| `actual_lng` | DECIMAL(9,6) | Реальная долгота |
 | `distance_meters` | INTEGER | Расстояние в метрах |
 | `points_earned` | INTEGER | Начисленные очки |
 | `played_at` | TIMESTAMP DEFAULT NOW() | Дата и время попытки |
