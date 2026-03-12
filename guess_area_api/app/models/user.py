@@ -1,6 +1,7 @@
 from sqlalchemy import Column, Integer, String, DateTime
-from sqlalchemy.sql import func
+from sqlalchemy.sql import func, expression
 from sqlalchemy.orm import relationship
+from ..database import Base
 
 class User(Base):
     __tablename__ = 'users'
