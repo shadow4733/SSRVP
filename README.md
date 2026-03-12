@@ -120,7 +120,6 @@ src/
 |---|---|---|
 | `id` | SERIAL PRIMARY KEY | Уникальный идентификатор города |
 | `name` | VARCHAR(100) NOT NULL | Название города |
-| `country` | VARCHAR(100) | Страна |
 | `latitude` | DECIMAL(9,6) NOT NULL | Широта |
 | `longitude` | DECIMAL(9,6) NOT NULL | Долгота |
 | `hint` | TEXT | Подсказка (опционально) |
