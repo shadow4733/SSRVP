@@ -4,23 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="725bc41c-a2d1-48d5-9700-3a57c006ae2b" name="Changes" comment="v0 -&gt; v0.1 build">
-      <change afterPath="$PROJECT_DIR$/guess_area/src/components/Footer.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/guess_area/src/components/Header.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/guess_area/src/components/MapComponent.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/guess_area/src/components/Sidebar.jsx" afterDir="false" />
+    <list default="true" id="725bc41c-a2d1-48d5-9700-3a57c006ae2b" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/img.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guess_area/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/guess_area/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guess_area/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/guess_area/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guess_area/eslint.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/guess_area/eslint.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guess_area/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/guess_area/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guess_area/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/guess_area/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guess_area/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/guess_area/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guess_area/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/guess_area/src/App.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guess_area/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/guess_area/src/App.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guess_area/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/guess_area/src/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guess_area/src/main.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/guess_area/src/main.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guess_area/vite.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/guess_area/vite.config.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,18 +16,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "UESSENCE"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;UESSENCE&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/shadow4733/SSRVP.git",
-    "accountId": "cb95ea34-02ee-4fca-b4b1-ff056122c450"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/shadow4733/SSRVP.git&quot;,
+    &quot;accountId&quot;: &quot;cb95ea34-02ee-4fca-b4b1-ff056122c450&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
 }</component>
@@ -52,8 +38,10 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "JavaScript Debug.index.html.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "git-widget-placeholder": "master",
@@ -75,7 +63,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-python-sdk-d7ad00fb9fc3-c546a90a8094-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-242.23726.102" />
+        <option value="bundled-js-predefined-d6986cc7102b-9b0f141eb926-JavaScript-WS-253.31033.133" />
       </set>
     </attachedChunks>
   </component>
@@ -89,11 +77,24 @@
       <updated>1772802108050</updated>
       <workItem from="1772802109059" duration="207000" />
       <workItem from="1772802388854" duration="359000" />
+      <workItem from="1773152797519" duration="1743000" />
+      <workItem from="1773317622051" duration="675000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Add files via upload" />
