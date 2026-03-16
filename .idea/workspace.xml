@@ -4,11 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="725bc41c-a2d1-48d5-9700-3a57c006ae2b" name="Changes" comment="refactor readme.md">
+    <list default="true" id="725bc41c-a2d1-48d5-9700-3a57c006ae2b" name="Changes" comment="Updated App.jsx">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/guess_area/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/guess_area/src/App.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guess_area_api/src/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/guess_area_api/src/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guess_area_api/src/models/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/guess_area_api/src/models/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guess_area/src/components/MapComponent.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/guess_area/src/components/MapComponent.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guess_area_api/src/api/city.py" beforeDir="false" afterPath="$PROJECT_DIR$/guess_area_api/src/api/city.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,7 +85,7 @@
       <workItem from="1773317622051" duration="2286000" />
       <workItem from="1773452687679" duration="1188000" />
       <workItem from="1773651674717" duration="1366000" />
-      <workItem from="1773656019929" duration="1409000" />
+      <workItem from="1773656019929" duration="2840000" />
     </task>
     <task id="LOCAL-00001" summary="added readme.md">
       <option name="closed" value="true" />
@@ -102,7 +103,39 @@
       <option name="project" value="LOCAL" />
       <updated>1773652455883</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="create MakeFile">
+      <option name="closed" value="true" />
+      <created>1773659043708</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1773659043708</updated>
+    </task>
+    <task id="LOCAL-00004" summary="added city.py">
+      <option name="closed" value="true" />
+      <created>1773659053499</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1773659053499</updated>
+    </task>
+    <task id="LOCAL-00005" summary="updated __init__.py">
+      <option name="closed" value="true" />
+      <created>1773659075079</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1773659075079</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Updated App.jsx">
+      <option name="closed" value="true" />
+      <created>1773659091970</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1773659091970</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -125,6 +158,10 @@
     <MESSAGE value="v0 -&gt; v0.1 build" />
     <MESSAGE value="added readme.md" />
     <MESSAGE value="refactor readme.md" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor readme.md" />
+    <MESSAGE value="create MakeFile" />
+    <MESSAGE value="added city.py" />
+    <MESSAGE value="updated __init__.py" />
+    <MESSAGE value="Updated App.jsx" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated App.jsx" />
   </component>
 </project>

@@ -1,7 +1,8 @@
-import React from 'react';
-import { MapContainer, TileLayer, Marker, Popup, Polyline, useMapEvents } from 'react-leaflet';
+import React, { useEffect } from 'react';
+import { MapContainer, TileLayer, Marker, Popup, Polyline, useMapEvents, useMap } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
+import { MAP_CONFIG, ACTIVE_TILE_STYLE } from '../utils/mapConfig';
 
 // Настройка иконок маркеров
 delete L.Icon.Default.prototype._getIconUrl;
@@ -21,45 +22,78 @@ function ClickHandler({ onMapClick }) {
   return null;
 }
 
-const MapComponent = ({ currentCity, guessedCoords, onMapClick, showLine }) => {
-  // Линия рисуется только если showLine = true и есть обе точки
-  const linePositions = (currentCity && guessedCoords && showLine) 
-    ? [currentCity.coords, guessedCoords] 
+// Компонент для установки жестких границ
+function BoundsEnforcer() {
+  const map = useMap();
+  
+  useEffect(() => {
+    const bounds = L.latLngBounds(
+      MAP_CONFIG.bounds.southwest,
+      MAP_CONFIG.bounds.northeast
+    );
+    
+    map.setMaxBounds(bounds);
+    map.on('drag', function() {
+      map.panInsideBounds(bounds, { animate: false });
+    });
+  }, [map]);
+  
+  return null;
+}
+
+const MapComponent = ({ currentCity, guessedCoords, onMapClick, showLine, actualCityCoords }) => {
+  const tileStyle = MAP_CONFIG.tileStyles[ACTIVE_TILE_STYLE];
+  const bounds = [MAP_CONFIG.bounds.southwest, MAP_CONFIG.bounds.northeast];
+  
+  const linePositions = (actualCityCoords && guessedCoords && showLine)
+    ? [actualCityCoords, guessedCoords] 
     : [];
 
   return (
     <MapContainer
-      center={[55.75, 37.62]}
-      zoom={5}
-      style={{ width: '1400px', height: '700px', border: '2px solid #333', boxShadow: '0 0 10px rgba(0,0,0,0.2)' }}
+      center={MAP_CONFIG.center}
+      zoom={MAP_CONFIG.zoom}
+      minZoom={MAP_CONFIG.minZoom}
+      maxZoom={MAP_CONFIG.maxZoom}
+      style={{ 
+        width: '1400px', 
+        height: '700px', 
+        border: '2px solid #333', 
+        boxShadow: '0 0 10px rgba(0,0,0,0.2)',
+        backgroundColor: '#f0f0f0'
+      }}
       attributionControl={false}
-      maxBounds={[[-90, -180], [90, 180]]}
+      maxBounds={bounds}
       maxBoundsViscosity={1.0}
       worldCopyJump={false}
     >
       <TileLayer
-        url="https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png"
-        maxZoom={19}
-        subdomains="abcd"
+        url={tileStyle.url}
+        maxZoom={tileStyle.maxZoom}
+        bounds={bounds}
       />
       
-      {/* Маркер загаданного города */}
-      {currentCity && showLine && (
-  	<Marker position={currentCity.coords}>
-    	  <Popup>{currentCity.name}</Popup>
-  	</Marker>
+      <BoundsEnforcer />
+      
+      {actualCityCoords && showLine && (
+  <Marker position={actualCityCoords}>
+      <Popup>✅ Правильный ответ: {currentCity?.name}</Popup>
+  </Marker>
       )}
 
-      {/* Маркер точки, куда кликнул игрок */}
       {guessedCoords && (
         <Marker position={guessedCoords}>
-          <Popup>Ваша точка</Popup>
+          <Popup>Ваша догадка</Popup>
         </Marker>
       )}
 
-      {/* Пунктирная линия, если нужно показать результат */}
       {linePositions.length === 2 && (
-        <Polyline positions={linePositions} color="red" dashArray="5, 10" weight={2} />
+        <Polyline 
+          positions={linePositions} 
+          color="red" 
+          dashArray="5, 10" 
+          weight={3} 
+        />
       )}
 
       <ClickHandler onMapClick={onMapClick} />
