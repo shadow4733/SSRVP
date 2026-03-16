@@ -247,19 +247,24 @@ CITIES = [
 ]
 
 def upgrade():
-    cities_table = table('cities',
-                         column('name', sa.String),
-                         column('latitude', sa.DECIMAL(9, 6)),
-                         column('longitude', sa.DECIMAL(9, 6)),
-                         column('hint', sa.Text)
-                         )
+    op.create_table(
+        "cities",
+        sa.Column("id", sa.Integer, primary_key=True),
+        sa.Column("name", sa.String(100), nullable=False),
+        sa.Column("latitude", sa.DECIMAL(9, 6), nullable=False),
+        sa.Column("longitude", sa.DECIMAL(9, 6), nullable=False),
+        sa.Column("hint", sa.Text),
+    )
+
+    cities_table = table(
+        "cities",
+        column("name", sa.String),
+        column("latitude", sa.DECIMAL),
+        column("longitude", sa.DECIMAL),
+        column("hint", sa.Text),
+    )
 
     op.bulk_insert(cities_table, CITIES)
 
 def downgrade():
-    city_names = [city['name'] for city in CITIES]
-    chunk_size = 50
-    for i in range(0, len(city_names), chunk_size):
-        chunk = city_names[i:i + chunk_size]
-        names = ', '.join(f"'{name}'" for name in chunk)
-        op.execute(f"DELETE FROM cities WHERE name IN ({names})")
+    op.drop_table("cities")

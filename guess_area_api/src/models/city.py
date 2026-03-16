@@ -10,5 +10,4 @@ class City(Base):
     latitude = Column(DECIMAL(9, 6), nullable=False)
     longitude = Column(DECIMAL(9, 6), nullable=False)
     hint = Column(Text, nullable=True)
-
-    game_sessions = relationship('GameSession', back_populates='city')
+    rounds = relationship("GameRound", back_populates="city")

@@ -13,6 +13,4 @@ class User(Base):
     total_score = Column(Integer, server_default=expression.text('0'), default=0)
     games_played = Column(Integer, server_default=expression.text('0'), default=0)
     created_at = Column(DateTime, server_default=func.now(), default=func.now())
-
-    # Relationships
     game_sessions = relationship('GameSession', back_populates='user', cascade='all, delete-orphan')

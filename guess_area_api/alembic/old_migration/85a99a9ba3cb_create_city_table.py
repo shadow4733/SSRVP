@@ -18,17 +18,16 @@ branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
 
 
-def upgrade() -> None:
-    op.execute("""
-        CREATE TABLE cities (
-            id SERIAL PRIMARY KEY,
-            name VARCHAR(100) NOT NULL,
-            latitude DECIMAL(9, 6) NOT NULL,
-            longitude DECIMAL(9, 6) NOT NULL,
-            hint TEXT
-        );
-    """)
+def upgrade():
+    op.create_table(
+        "cities",
+        sa.Column("id", sa.Integer, primary_key=True),
+        sa.Column("name", sa.String(100), nullable=False),
+        sa.Column("latitude", sa.DECIMAL(9, 6), nullable=False),
+        sa.Column("longitude", sa.DECIMAL(9, 6), nullable=False),
+        sa.Column("hint", sa.Text),
+    )
 
 
-def downgrade() -> None:
-    op.execute("DROP TABLE cities;")
+def downgrade():
+    op.drop_table("cities")
