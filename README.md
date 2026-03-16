@@ -120,17 +120,28 @@ src/
 | `longitude` | DECIMAL(9,6) NOT NULL | Долгота |
 | `hint` | TEXT | Подсказка (опционально) |
 
-#### Таблица `game_sessions`
+#### Таблица `game_sessions` (Игровые сессии)
 | Колонка | Тип | Описание |
 |---|---|---|
-| `id` | SERIAL PRIMARY KEY | Уникальный ID попытки |
-| `user_id` | INTEGER REFERENCES users(id) ON DELETE CASCADE | Пользователь |
-| `city_id` | INTEGER REFERENCES cities(id) | Предложенный город |
+| `id` | SERIAL PRIMARY KEY | Уникальный ID игровой сессии |
+| `user_id` | INTEGER REFERENCES users(id) ON DELETE CASCADE | Пользователь, который играл |
+| `started_at` | TIMESTAMP DEFAULT NOW() | Время начала игры |
+| `completed_at` | TIMESTAMP | Время завершения игры (если NULL - игра не закончена) |
+| `total_score` | INTEGER DEFAULT 0 | Сумма очков за все раунды этой игры |
+| `total_rounds` | INTEGER NOT NULL | Количество раундов в игре (например, 5) |
+
+#### Таблица `game_rounds` (Раунды игры)
+| Колонка | Тип | Описание |
+|---|---|---|
+| `id` | SERIAL PRIMARY KEY | Уникальный ID раунда |
+| `session_id` | INTEGER REFERENCES game_sessions(id) ON DELETE CASCADE | ID игровой сессии |
+| `city_id` | INTEGER REFERENCES cities(id) | Город, который нужно было угадать |
 | `guessed_lat` | DECIMAL(9,6) | Широта клика игрока |
 | `guessed_lng` | DECIMAL(9,6) | Долгота клика игрока |
-| `distance_meters` | INTEGER | Расстояние в метрах |
-| `points_earned` | INTEGER | Начисленные очки |
-| `played_at` | TIMESTAMP DEFAULT NOW() | Дата и время попытки |
+| `distance_meters` | INTEGER | Расстояние в метрах между городом и кликом |
+| `points_earned` | INTEGER | Начисленные очки за этот раунд |
+| `round_number` | INTEGER NOT NULL | Номер раунда в сессии (1, 2, 3...) |
+| `played_at` | TIMESTAMP DEFAULT NOW() | Время ответа на этот раунд |
 
 ---
 
