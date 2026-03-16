@@ -23,7 +23,7 @@ frontend:
 
 install-backend:
 	@echo "Установка зависимостей бекенда..."
-	cd guess_area_api && python3 -m venv .venv && source .venv/bin/activate && pip install fastapi uvicorn sqlalchemy python-dotenv psycopg2-binary alembic
+	cd guess_area_api && python3 -m venv .venv && source .venv/bin/activate && pip install fastapi uvicorn sqlalchemy python-dotenv psycopg2-binary alembic geopy
 
 install-frontend:
 	@echo "Установка зависимостей фронтенда..."
