@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="725bc41c-a2d1-48d5-9700-3a57c006ae2b" name="Changes" comment="created city_service">
+    <list default="true" id="725bc41c-a2d1-48d5-9700-3a57c006ae2b" name="Changes" comment="files for docker compose">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guess_area/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/guess_area_api/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/guess_area_api/docker-compose.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,7 +88,7 @@
       <workItem from="1773922783237" duration="44000" />
       <workItem from="1773929430170" duration="208000" />
       <workItem from="1773932033788" duration="2284000" />
-      <workItem from="1773935663234" duration="977000" />
+      <workItem from="1773935663234" duration="1591000" />
     </task>
     <task id="LOCAL-00001" summary="added readme.md">
       <option name="closed" value="true" />
@@ -171,7 +170,23 @@
       <option name="project" value="LOCAL" />
       <updated>1773660527896</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="created docker compose.yml in SSRVP module">
+      <option name="closed" value="true" />
+      <created>1773936759275</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1773936759275</updated>
+    </task>
+    <task id="LOCAL-00012" summary="files for docker compose">
+      <option name="closed" value="true" />
+      <created>1773936793717</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1773936793717</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -202,6 +217,8 @@
     <MESSAGE value="Updated App.jsx and created new structure" />
     <MESSAGE value="updated .gitignore" />
     <MESSAGE value="created city_service" />
-    <option name="LAST_COMMIT_MESSAGE" value="created city_service" />
+    <MESSAGE value="created docker compose.yml in SSRVP module" />
+    <MESSAGE value="files for docker compose" />
+    <option name="LAST_COMMIT_MESSAGE" value="files for docker compose" />
   </component>
 </project>
