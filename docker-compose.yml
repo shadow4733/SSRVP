@@ -1,0 +1,71 @@
+services:
+  # Frontend - React приложение
+  frontend:
+    build:
+      context: ./guess_area
+      dockerfile: Dockerfile
+    container_name: guess_area_frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - REACT_APP_API_URL=http://backend:8000
+    depends_on:
+      - backend
+    networks:
+      - app_network
+    # Перезагрузить контейнер при изменении файлов (для разработки)
+    volumes:
+      - ./guess_area/src:/app/src
+      - ./guess_area/public:/app/public
+
+  # Backend - Python API
+  backend:
+    build:
+      context: ./guess_area_api
+      dockerfile: Dockerfile
+    container_name: guess_area_backend
+    ports:
+      - "8000:8000"
+    environment:
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_NAME=${DB_NAME}
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - PYTHONUNBUFFERED=1
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - app_network
+    volumes:
+      - ./guess_area_api/src:/app/src
+      - ./guess_area_api/alembic:/app/alembic
+    command: uvicorn src.main:app --host 0.0.0.0 --port 8000 --reload
+
+  # Database - PostgreSQL
+  postgres:
+    image: postgres:latest
+    container_name: guess_area_postgres
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-postgres}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - app_network
+
+networks:
+  app_network:
+    driver: bridge
+
+volumes:
+  postgres_data:
