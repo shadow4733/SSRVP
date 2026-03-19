@@ -4,12 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="725bc41c-a2d1-48d5-9700-3a57c006ae2b" name="Changes" comment="Updated App.jsx">
+    <list default="true" id="725bc41c-a2d1-48d5-9700-3a57c006ae2b" name="Changes" comment="created city_service">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guess_area/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/guess_area/src/App.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guess_area/src/components/MapComponent.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/guess_area/src/components/MapComponent.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guess_area_api/src/api/city.py" beforeDir="false" afterPath="$PROJECT_DIR$/guess_area_api/src/api/city.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guess_area/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/guess_area_api/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/guess_area_api/docker-compose.yml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,7 +84,12 @@
       <workItem from="1773317622051" duration="2286000" />
       <workItem from="1773452687679" duration="1188000" />
       <workItem from="1773651674717" duration="1366000" />
-      <workItem from="1773656019929" duration="2840000" />
+      <workItem from="1773656019929" duration="3842000" />
+      <workItem from="1773748394877" duration="1104000" />
+      <workItem from="1773922783237" duration="44000" />
+      <workItem from="1773929430170" duration="208000" />
+      <workItem from="1773932033788" duration="2284000" />
+      <workItem from="1773935663234" duration="977000" />
     </task>
     <task id="LOCAL-00001" summary="added readme.md">
       <option name="closed" value="true" />
@@ -135,7 +139,39 @@
       <option name="project" value="LOCAL" />
       <updated>1773659091970</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Updated Makefile">
+      <option name="closed" value="true" />
+      <created>1773660399422</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1773660399422</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Updated App.jsx and created new structure">
+      <option name="closed" value="true" />
+      <created>1773660482334</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1773660482334</updated>
+    </task>
+    <task id="LOCAL-00009" summary="updated .gitignore">
+      <option name="closed" value="true" />
+      <created>1773660493881</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1773660493881</updated>
+    </task>
+    <task id="LOCAL-00010" summary="created city_service">
+      <option name="closed" value="true" />
+      <created>1773660527896</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1773660527896</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -162,6 +198,10 @@
     <MESSAGE value="added city.py" />
     <MESSAGE value="updated __init__.py" />
     <MESSAGE value="Updated App.jsx" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated App.jsx" />
+    <MESSAGE value="Updated Makefile" />
+    <MESSAGE value="Updated App.jsx and created new structure" />
+    <MESSAGE value="updated .gitignore" />
+    <MESSAGE value="created city_service" />
+    <option name="LAST_COMMIT_MESSAGE" value="created city_service" />
   </component>
 </project>
