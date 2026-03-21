@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="725bc41c-a2d1-48d5-9700-3a57c006ae2b" name="Changes" comment="refactor docker compose">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guess_area_api/src/service/city_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/guess_area_api/src/service/city_service.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -229,16 +230,5 @@
     <MESSAGE value="files for docker compose" />
     <MESSAGE value="refactor docker compose" />
     <option name="LAST_COMMIT_MESSAGE" value="refactor docker compose" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/guess_area_api/alembic/versions/35a4436ad0cb_migration_for_cities_in_the_world.py</url>
-          <line>7</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

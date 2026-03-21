@@ -42,10 +42,10 @@ class CityService:
         # Расстояние в километрах
         distance_km = geodesic(city_coords, guessed_coords).kilometers
 
-        # Подсчет очков: максимум 100 очков за точность
+        # Подсчет очков: максимум 1000 очков за точность
         # Чем меньше расстояние, тем больше очков
-        max_score = 100
-        max_distance_km = 500  # 500 км - максимальное расстояние для получения очков
+        max_score = 1000
+        max_distance_km = 1000  # 1000 км - максимальное расстояние для получения очков
         
         if distance_km >= max_distance_km:
             earned_points = 0
