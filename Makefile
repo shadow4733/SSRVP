@@ -1,38 +1,96 @@
-.PHONY: help backend frontend install-backend install-frontend db-up db-down
+.PHONY: help build up down logs backend-shell frontend-shell db-shell logs-backend logs-frontend logs-db restart
+
+GREEN := \033[0;32m
+YELLOW := \033[1;33m
+NC := \033[0m
 
 help:
-	@echo "  Доступные команды:"
+	@echo "$(GREEN)Доступные команды:$(NC)"
 	@echo ""
-	@echo "  make backend          - Запустить бекенд (FastAPI)"
-	@echo "  make frontend         - Запустить фронтенд (React)"
-	@echo "  make install-backend  - Установить зависимости бекенда"
-	@echo "  make install-frontend - Установить зависимости фронтенда"
-	@echo "  make db-up            - Запустить PostgreSQL (docker)"
-	@echo "  make db-down          - Остановить PostgreSQL"
+	@echo "$(YELLOW)Управление контейнерами:$(NC)"
+	@echo "  make build          - Собрать все контейнеры (docker compose build)"
+	@echo "  make up             - Запустить все контейнеры в фоне"
+	@echo "  make up-build       - Собрать и запустить контейнеры (docker compose up -d --build)"
+	@echo "  make down           - Остановить и удалить контейнеры"
+	@echo "  make restart        - Перезапустить все контейнеры"
+	@echo "  make logs           - Просмотр логов всех контейнеров"
 	@echo ""
-	@echo "  Для просмотра API документации:"
-	@echo "  После запуска бекенда откройте: http://localhost:8000/docs"
+	@echo "$(YELLOW)Доступ к контейнерам:$(NC)"
+	@echo "  make backend-shell  - Войти в контейнер бекенда (bash)"
+	@echo "  make frontend-shell - Войти в контейнер фронтенда (sh)"
+	@echo "  make db-shell       - Войти в контейнер PostgreSQL (psql)"
+	@echo ""
+	@echo "$(YELLOW)Просмотр логов отдельных сервисов:$(NC)"
+	@echo "  make logs-backend   - Логи бекенда"
+	@echo "  make logs-frontend  - Логи фронтенда"
+	@echo "  make logs-db        - Логи базы данных"
+	@echo ""
+	@echo "$(GREEN)После запуска:$(NC)"
+	@echo "  Фронтенд: http://localhost:3000"
+	@echo "  Бекенд API: http://localhost:8000"
+	@echo "  Документация API: http://localhost:8000/docs"
 
-backend:
-	@echo "Запуск бекенда..."
-	cd guess_area_api && source .venv/bin/activate && uvicorn src.main:app --reload --host 0.0.0.0 --port 8000
+build:
+	@echo "$(GREEN)Сборка контейнеров...$(NC)"
+	docker compose build
 
-frontend:
-	@echo "Запуск фронтенда..."
-	cd guess_area && npm run dev
+up:
+	@echo "$(GREEN)Запуск контейнеров...$(NC)"
+	docker compose up -d
 
-install-backend:
-	@echo "Установка зависимостей бекенда..."
-	cd guess_area_api && python3 -m venv .venv && source .venv/bin/activate && pip install fastapi uvicorn sqlalchemy python-dotenv psycopg2-binary alembic geopy
+up-build:
+	@echo "$(GREEN)Сборка и запуск контейнеров...$(NC)"
+	docker compose up -d --build
 
-install-frontend:
-	@echo "Установка зависимостей фронтенда..."
-	cd guess_area && npm install
+down:
+	@echo "$(YELLOW)Остановка и удаление контейнеров...$(NC)"
+	docker compose down
 
-db-up:
-	@echo "Запуск PostgreSQL..."
-	cd guess_area_api && docker-compose up -d
+restart:
+	@echo "$(YELLOW)Перезапуск контейнеров...$(NC)"
+	docker compose restart
 
-db-down:
-	@echo "Остановка PostgreSQL..."
-	cd guess_area_api && docker-compose down
+logs:
+	@echo "$(GREEN)Логи всех контейнеров (Ctrl+C для выхода):$(NC)"
+	docker compose logs -f
+
+logs-backend:
+	@echo "$(GREEN)Логи бекенда (Ctrl+C для выхода):$(NC)"
+	docker compose logs -f backend
+
+logs-frontend:
+	@echo "$(GREEN)Логи фронтенда (Ctrl+C для выхода):$(NC)"
+	docker compose logs -f frontend
+
+logs-db:
+	@echo "$(GREEN)Логи базы данных (Ctrl+C для выхода):$(NC)"
+	docker compose logs -f postgres
+
+backend-shell:
+	@echo "$(GREEN)Вход в контейнер бекенда...$(NC)"
+	docker compose exec backend bash || docker compose exec backend sh
+
+frontend-shell:
+	@echo "$(GREEN)Вход в контейнер фронтенда...$(NC)"
+	docker compose exec frontend sh
+
+db-shell:
+	@echo "$(GREEN)Подключение к PostgreSQL...$(NC)"
+	@echo "Используйте команды: \du (список пользователей), \l (список БД), \dt (таблицы)"
+	@docker compose exec postgres psql -U ${DB_USER} -d ${DB_NAME}
+
+ps:
+	@echo "$(GREEN)Статус контейнеров:$(NC)"
+	docker compose ps
+
+prune:
+	@echo "$(YELLOW)Очистка неиспользуемых ресурсов Docker...$(NC)"
+	docker system prune -f
+
+migrate:
+	@echo "$(GREEN)Выполнение миграций Alembic...$(NC)"
+	docker compose exec backend alembic upgrade head
+
+migrate-create:
+	@read -p "Введите название миграции: " name; \
+	docker compose exec backend alembic revision --autogenerate -m "$$name"

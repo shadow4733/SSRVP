@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="725bc41c-a2d1-48d5-9700-3a57c006ae2b" name="Changes" comment="files for docker compose">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="725bc41c-a2d1-48d5-9700-3a57c006ae2b" name="Changes" comment="refactor docker compose">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guess_area_api/.idea/dataSources.xml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,7 +89,9 @@
       <workItem from="1773922783237" duration="44000" />
       <workItem from="1773929430170" duration="208000" />
       <workItem from="1773932033788" duration="2284000" />
-      <workItem from="1773935663234" duration="1591000" />
+      <workItem from="1773935663234" duration="2461000" />
+      <workItem from="1773973446011" duration="726000" />
+      <workItem from="1774064475895" duration="790000" />
     </task>
     <task id="LOCAL-00001" summary="added readme.md">
       <option name="closed" value="true" />
@@ -186,7 +189,15 @@
       <option name="project" value="LOCAL" />
       <updated>1773936793717</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="refactor docker compose">
+      <option name="closed" value="true" />
+      <created>1773937428690</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1773937428690</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -219,6 +230,7 @@
     <MESSAGE value="created city_service" />
     <MESSAGE value="created docker compose.yml in SSRVP module" />
     <MESSAGE value="files for docker compose" />
-    <option name="LAST_COMMIT_MESSAGE" value="files for docker compose" />
+    <MESSAGE value="refactor docker compose" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor docker compose" />
   </component>
 </project>
