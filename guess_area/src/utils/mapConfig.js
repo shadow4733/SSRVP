@@ -1,16 +1,15 @@
-
 export const MAP_CONFIG = {
-  bounds: {
-    southwest: [41.5, 27],
-    northeast: [77, 170]
-  },
+  // bounds: {
+  //   southwest: [41.5, 27],
+  //   northeast: [77, 170]
+  // },
   
   center: [62, 95],
-  zoom: 4,
-  minZoom: 4,
+  zoom: 3,
+  minZoom: 3,
   maxZoom: 10,
   
-  // Стиль карты
+
   tileStyles: {
     nolabels: {
       url: 'https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png',

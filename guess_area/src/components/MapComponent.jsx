@@ -22,31 +22,32 @@ function ClickHandler({ onMapClick }) {
   return null;
 }
 
-// Компонент для установки жестких границ
-function BoundsEnforcer() {
-  const map = useMap();
-  
-  useEffect(() => {
-    const bounds = L.latLngBounds(
-      MAP_CONFIG.bounds.southwest,
-      MAP_CONFIG.bounds.northeast
-    );
-    
-    map.setMaxBounds(bounds);
-    map.on('drag', function() {
-      map.panInsideBounds(bounds, { animate: false });
-    });
-  }, [map]);
-  
-  return null;
-}
+// Компонент для установки жестких границ (УДАЛЕН)
+// function BoundsEnforcer() {
+//   const map = useMap();
+//
+//   useEffect(() => {
+//     const bounds = L.latLngBounds(
+//       MAP_CONFIG.bounds.southwest,
+//       MAP_CONFIG.bounds.northeast
+//     );
+//
+//     map.setMaxBounds(bounds);
+//     map.on('drag', function() {
+//       map.panInsideBounds(bounds, { animate: false });
+//     });
+//   }, [map]);
+//
+//   return null;
+// }
 
 const MapComponent = ({ currentCity, guessedCoords, onMapClick, showLine, actualCityCoords }) => {
   const tileStyle = MAP_CONFIG.tileStyles[ACTIVE_TILE_STYLE];
-  const bounds = [MAP_CONFIG.bounds.southwest, MAP_CONFIG.bounds.northeast];
-  
+  // Удалено использование bounds
+  // const bounds = [MAP_CONFIG.bounds.southwest, MAP_CONFIG.bounds.northeast];
+
   const linePositions = (actualCityCoords && guessedCoords && showLine)
-    ? [actualCityCoords, guessedCoords] 
+    ? [actualCityCoords, guessedCoords]
     : [];
 
   return (
@@ -55,26 +56,26 @@ const MapComponent = ({ currentCity, guessedCoords, onMapClick, showLine, actual
       zoom={MAP_CONFIG.zoom}
       minZoom={MAP_CONFIG.minZoom}
       maxZoom={MAP_CONFIG.maxZoom}
-      style={{ 
-        width: '1400px', 
-        height: '700px', 
-        border: '2px solid #333', 
+      style={{
+        width: '1400px',
+        height: '700px',
+        border: '2px solid #333',
         boxShadow: '0 0 10px rgba(0,0,0,0.2)',
         backgroundColor: '#f0f0f0'
       }}
       attributionControl={false}
-      maxBounds={bounds}
-      maxBoundsViscosity={1.0}
+      // maxBounds={bounds}  // Удалено
+      // maxBoundsViscosity={1.0}  // Удалено
       worldCopyJump={false}
     >
       <TileLayer
         url={tileStyle.url}
         maxZoom={tileStyle.maxZoom}
-        bounds={bounds}
+        // bounds={bounds}  // Удалено
       />
-      
-      <BoundsEnforcer />
-      
+
+      {/* <BoundsEnforcer /> */}  {/* Компонент удален */}
+
       {actualCityCoords && showLine && (
   <Marker position={actualCityCoords}>
       <Popup>✅ Правильный ответ: {currentCity?.name}</Popup>
@@ -88,11 +89,11 @@ const MapComponent = ({ currentCity, guessedCoords, onMapClick, showLine, actual
       )}
 
       {linePositions.length === 2 && (
-        <Polyline 
-          positions={linePositions} 
-          color="red" 
-          dashArray="5, 10" 
-          weight={3} 
+        <Polyline
+          positions={linePositions}
+          color="red"
+          dashArray="5, 10"
+          weight={3}
         />
       )}
 
