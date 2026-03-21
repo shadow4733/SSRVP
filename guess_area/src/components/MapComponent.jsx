@@ -22,29 +22,28 @@ function ClickHandler({ onMapClick }) {
   return null;
 }
 
-// Компонент для установки жестких границ (УДАЛЕН)
-// function BoundsEnforcer() {
-//   const map = useMap();
-//
-//   useEffect(() => {
-//     const bounds = L.latLngBounds(
-//       MAP_CONFIG.bounds.southwest,
-//       MAP_CONFIG.bounds.northeast
-//     );
-//
-//     map.setMaxBounds(bounds);
-//     map.on('drag', function() {
-//       map.panInsideBounds(bounds, { animate: false });
-//     });
-//   }, [map]);
-//
-//   return null;
-// }
+// Компонент для установки жестких границ
+function BoundsEnforcer() {
+  const map = useMap();
+
+  useEffect(() => {
+    const bounds = L.latLngBounds(
+      MAP_CONFIG.bounds.southwest,
+      MAP_CONFIG.bounds.northeast
+    );
+
+    map.setMaxBounds(bounds);
+    map.on('drag', function() {
+      map.panInsideBounds(bounds, { animate: false });
+    });
+  }, [map]);
+
+  return null;
+}
 
 const MapComponent = ({ currentCity, guessedCoords, onMapClick, showLine, actualCityCoords }) => {
   const tileStyle = MAP_CONFIG.tileStyles[ACTIVE_TILE_STYLE];
-  // Удалено использование bounds
-  // const bounds = [MAP_CONFIG.bounds.southwest, MAP_CONFIG.bounds.northeast];
+  const bounds = [MAP_CONFIG.bounds.southwest, MAP_CONFIG.bounds.northeast];
 
   const linePositions = (actualCityCoords && guessedCoords && showLine)
     ? [actualCityCoords, guessedCoords]
@@ -64,22 +63,22 @@ const MapComponent = ({ currentCity, guessedCoords, onMapClick, showLine, actual
         backgroundColor: '#f0f0f0'
       }}
       attributionControl={false}
-      // maxBounds={bounds}  // Удалено
-      // maxBoundsViscosity={1.0}  // Удалено
+      maxBounds={bounds}
+      maxBoundsViscosity={1.0}
       worldCopyJump={false}
     >
       <TileLayer
         url={tileStyle.url}
         maxZoom={tileStyle.maxZoom}
-        // bounds={bounds}  // Удалено
+        bounds={bounds}
       />
 
-      {/* <BoundsEnforcer /> */}  {/* Компонент удален */}
+      <BoundsEnforcer />
 
       {actualCityCoords && showLine && (
-  <Marker position={actualCityCoords}>
-      <Popup>✅ Правильный ответ: {currentCity?.name}</Popup>
-  </Marker>
+        <Marker position={actualCityCoords}>
+          <Popup>✅ Правильный ответ: {currentCity?.name}</Popup>
+        </Marker>
       )}
 
       {guessedCoords && (

@@ -1,8 +1,8 @@
 export const MAP_CONFIG = {
-  // bounds: {
-  //   southwest: [41.5, 27],
-  //   northeast: [77, 170]
-  // },
+  bounds: {
+    southwest: [-90, -180],   // Юго-запад: весь мир
+    northeast: [90, 180]       // Северо-восток: весь мир
+  },
   
   center: [62, 95],
   zoom: 3,
