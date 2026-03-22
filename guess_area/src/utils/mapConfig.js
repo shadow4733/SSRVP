@@ -1,6 +1,6 @@
 export const MAP_CONFIG = {
   bounds: {
-    southwest: [-90, -180],   // Юго-запад: весь мир
+    southwest: [-60, -180],   // Юго-запад: без Антарктиды
     northeast: [90, 180]       // Северо-восток: весь мир
   },
   
