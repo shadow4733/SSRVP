@@ -4,20 +4,7 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="725bc41c-a2d1-48d5-9700-3a57c006ae2b" name="Changes" comment="update">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guess_area/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/guess_area/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guess_area/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/guess_area/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guess_area/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/guess_area/src/App.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guess_area/src/components/GamePanel.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/guess_area/src/components/GamePanel.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guess_area/src/components/Header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/guess_area/src/components/Header.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guess_area/src/main.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/guess_area/src/main.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guess_area_api/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/guess_area_api/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guess_area_api/src/api/auth.py" beforeDir="false" afterPath="$PROJECT_DIR$/guess_area_api/src/api/auth.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guess_area_api/src/database.py" beforeDir="false" afterPath="$PROJECT_DIR$/guess_area_api/src/database.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guess_area_api/src/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/guess_area_api/src/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guess_area_api/src/service/auth_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/guess_area_api/src/service/auth_service.py" afterDir="false" />
-    </list>
+    <list default="true" id="725bc41c-a2d1-48d5-9700-3a57c006ae2b" name="Changes" comment="update" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
