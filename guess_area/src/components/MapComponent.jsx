@@ -4,7 +4,6 @@ import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { MAP_CONFIG, ACTIVE_TILE_STYLE } from '../utils/mapConfig';
 
-// Настройка иконок маркеров
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
   iconRetinaUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png',
@@ -12,7 +11,6 @@ L.Icon.Default.mergeOptions({
   shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
 });
 
-// Компонент для обработки кликов по карте
 function ClickHandler({ onMapClick }) {
   useMapEvents({
     click(e) {
@@ -22,7 +20,6 @@ function ClickHandler({ onMapClick }) {
   return null;
 }
 
-// Компонент для установки жестких границ
 function BoundsEnforcer() {
   const map = useMap();
 

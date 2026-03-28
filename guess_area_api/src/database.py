@@ -40,3 +40,11 @@ class Database:
         self.engine.dispose()
 
 db = Database()
+
+def get_db():
+    """Dependency для получения сессии БД в FastAPI"""
+    session = db.get_session()
+    try:
+        yield session
+    finally:
+        session.close()

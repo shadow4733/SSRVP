@@ -1,0 +1,171 @@
+.game-setup-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+  background: linear-gradient(to bottom, #1c295e, #080c1c);
+  min-height: calc(100vh - 150px);
+}
+
+.setup-box {
+  background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+  border-radius: 20px;
+  padding: 40px;
+  width: 100%;
+  max-width: 800px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.setup-title {
+  text-align: center;
+  color: #ffd700;
+  font-size: 36px;
+  margin: 0 0 30px 0;
+  font-weight: 700;
+}
+
+/* Статистика */
+.stats-panel {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 15px;
+  margin-bottom: 40px;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px;
+  background: rgba(102, 126, 234, 0.1);
+  border-radius: 10px;
+  border: 1px solid rgba(102, 126, 234, 0.3);
+}
+
+.stat-label {
+  color: #b8c5d6;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.stat-value {
+  color: #ffffff;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.stat-value.highlight {
+  color: #ffd700;
+}
+
+/* Выбор раундов */
+.rounds-selection h2 {
+  color: #ffffff;
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 25px;
+}
+
+.rounds-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.round-option {
+  background: rgba(0, 0, 0, 0.3);
+  border: 3px solid rgba(102, 126, 234, 0.3);
+  border-radius: 16px;
+  padding: 25px 15px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.round-option:hover {
+  transform: translateY(-5px);
+  border-color: rgba(102, 126, 234, 0.6);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+}
+
+.round-option.selected {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-color: #ffd700;
+  box-shadow: 0 8px 30px rgba(102, 126, 234, 0.6);
+  transform: scale(1.05);
+}
+
+.round-emoji {
+  font-size: 48px;
+  margin-bottom: 10px;
+}
+
+.round-label {
+  color: #ffffff;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.round-description {
+  color: #b8c5d6;
+  font-size: 14px;
+}
+
+.round-option.selected .round-description {
+  color: #ffffff;
+}
+
+/* Кнопка старта */
+.start-game-btn {
+  width: 100%;
+  padding: 18px 32px;
+  background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 22px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 20px rgba(17, 153, 142, 0.4);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.start-game-btn:hover:not(:disabled) {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(17, 153, 142, 0.6);
+}
+
+.start-game-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Адаптив */
+@media (max-width: 768px) {
+  .setup-box {
+    padding: 30px 20px;
+  }
+  
+  .setup-title {
+    font-size: 28px;
+  }
+  
+  .rounds-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .stats-panel {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
