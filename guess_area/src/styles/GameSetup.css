@@ -1,9 +1,9 @@
 .game-setup-container {
+  min-width: 1920px;
   flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 40px 20px;
   background: linear-gradient(to bottom, #1c295e, #080c1c);
   min-height: calc(100vh - 150px);
 }

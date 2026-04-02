@@ -17,7 +17,7 @@ function WelcomePage() {
     <div className="auth-container">
       <div className="auth-box" style={{ maxWidth: '600px', textAlign: 'center' }}>
         <h1 className="auth-title" style={{ fontSize: '48px', marginBottom: '20px' }}>
-          🌍 Угадай Город
+          🌍 PinTheMap
         </h1>
         <p style={{ 
           color: '#e0e0e0', 

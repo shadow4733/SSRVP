@@ -4,7 +4,19 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="725bc41c-a2d1-48d5-9700-3a57c006ae2b" name="Changes" comment="update" />
+    <list default="true" id="725bc41c-a2d1-48d5-9700-3a57c006ae2b" name="Changes" comment="update">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guess_area/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/guess_area/src/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guess_area/src/components/Footer.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/guess_area/src/components/Footer.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guess_area/src/components/Header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/guess_area/src/components/Header.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guess_area/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/guess_area/src/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guess_area/src/pages/LoginPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/guess_area/src/pages/LoginPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guess_area/src/pages/RegisterPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/guess_area/src/pages/RegisterPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guess_area/src/pages/WelcomePage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/guess_area/src/pages/WelcomePage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guess_area/src/styles/AuthPages.css" beforeDir="false" afterPath="$PROJECT_DIR$/guess_area/src/styles/AuthPages.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guess_area/src/styles/GameResults.css" beforeDir="false" afterPath="$PROJECT_DIR$/guess_area/src/styles/GameResults.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guess_area/src/styles/GameSetup.css" beforeDir="false" afterPath="$PROJECT_DIR$/guess_area/src/styles/GameSetup.css" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

@@ -1,10 +1,10 @@
 .auth-container {
+  min-width: 1920px;
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   background: linear-gradient(135deg, #1c295e 0%, #080c1c 100%);
-  padding: 20px;
 }
 
 .auth-box {
@@ -12,7 +12,7 @@
   border-radius: 16px;
   padding: 40px;
   width: 100%;
-  max-width: 450px;
+  max-width: 500px;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
   border: 1px solid rgba(255, 255, 255, 0.1);
 }

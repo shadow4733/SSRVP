@@ -48,7 +48,7 @@ function RegisterPage() {
   return (
     <div className="auth-container">
       <div className="auth-box">
-        <h1 className="auth-title">🌍 Угадай Город</h1>
+        <h1 className="auth-title">🌍 PinTheMap</h1>
         <h2 className="auth-subtitle">Регистрация</h2>
         
         <form onSubmit={handleSubmit} className="auth-form">

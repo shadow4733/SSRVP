@@ -1,5 +1,6 @@
 /* Глобальные стили */
 body {
+  max-width: 1920px;
   margin: 0;
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
@@ -17,9 +18,8 @@ body {
   justify-content: center;
   gap: 50px;
   width: 100%;
-  max-width: 1860px;
+  min-width: 1920px;
   margin: 0 auto;
-  padding: 20px 0;
   box-sizing: border-box;
   background: linear-gradient(to bottom, #1c295e, #080c1c);
 }
