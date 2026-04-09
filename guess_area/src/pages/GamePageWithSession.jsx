@@ -25,7 +25,6 @@ function GamePage() {
   const { hint, loading: hintLoading, fetchHint, resetHint } = useHint();
   const { guessedCoords, lastResult, submitting, handleMapClick, submitGuess, resetGuess } = useGame();
 
-  // Загрузить сессию
   useEffect(() => {
     loadSession();
   }, [sessionId]);
@@ -53,6 +52,12 @@ function GamePage() {
     }
   };
 
+  const handleMapClickConditional = (coords) => {
+    if (lastResult === null) {
+      handleMapClick(coords);
+    }
+  };
+
   const handleFetchCity = async () => {
     if (session && currentRound === session.total_rounds) {
       navigate(`/game-results/${sessionId}`);
@@ -62,7 +67,6 @@ function GamePage() {
     await fetchRandomCity();
     resetHint();
     resetGuess();
-
     setCurrentRound(prev => prev + 1);
   };
 
@@ -185,7 +189,7 @@ function GamePage() {
         <MapComponent
           currentCity={currentCity}
           guessedCoords={guessedCoords}
-          onMapClick={handleMapClick}
+          onMapClick={handleMapClickConditional}
           showLine={lastResult !== null}
           actualCityCoords={lastResult ? [lastResult.city_latitude, lastResult.city_longitude] : null}
         />
