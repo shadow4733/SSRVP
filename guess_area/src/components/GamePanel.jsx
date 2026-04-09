@@ -30,6 +30,8 @@ const GamePanel = ({
     );
   }
 
+  const hasResult = lastResult !== null;
+
   return (
     <>
       <p style={{ 
@@ -81,24 +83,22 @@ const GamePanel = ({
         <em>Нажмите на карту в предполагаемом месте города, затем нажмите "Подтвердить".</em>
       </p>
       
-      <button onClick={onSubmit} disabled={!guessedCoords || submitting} style={{
-        background: guessedCoords && !submitting 
-          ? 'linear-gradient(135deg, #11998e 0%, #38ef7d 100%)' 
-          : undefined
-      }}>
-        {submitting ? 'Проверка...' : 'Подтвердить'}
-      </button>
-      
+      {!hasResult && (
+        <button
+          onClick={onSubmit}
+          disabled={!guessedCoords || submitting}
+          style={{
+            background: guessedCoords && !submitting
+              ? 'linear-gradient(135deg, #11998e 0%, #38ef7d 100%)'
+              : undefined
+          }}
+        >
+          {submitting ? 'Проверка...' : 'Подтвердить'}
+        </button>
+      )}
+
       {lastResult && (
-        <div style={{ 
-          marginTop: '15px', 
-          padding: '15px', 
-          background: 'linear-gradient(135deg, #11998e 0%, #38ef7d 100%)',
-          borderRadius: '8px',
-          border: '2px solid #00d4ff',
-          boxShadow: '0 4px 15px rgba(17, 153, 142, 0.4)',
-          color: '#ffffff'
-        }}>
+        <div style={{ marginTop: '15px', padding: '15px', background: 'linear-gradient(135deg, #11998e 0%, #38ef7d 100%)', borderRadius: '8px', border: '2px solid #00d4ff', boxShadow: '0 4px 15px rgba(17, 153, 142, 0.4)', color: '#ffffff' }}>
           <p style={{ margin: '0 0 8px 0', fontSize: '16px' }}>
             <strong> Расстояние:</strong> <span style={{ fontSize: '20px', fontWeight: 'bold' }}>{lastResult.distance_km.toFixed(1)} км</span>
           </p>
@@ -107,10 +107,12 @@ const GamePanel = ({
           </p>
         </div>
       )}
-      
-      <button onClick={onFetchCity} style={{ marginTop: '15px' }} disabled={loading}>
-        {loading ? 'Загрузка...' : 'Следующий город'}
-      </button>
+
+      {hasResult && (
+        <button onClick={onFetchCity} style={{ marginTop: '15px' }} disabled={loading}>
+          {loading ? 'Загрузка...' : 'Следующий город →'}
+        </button>
+      )}
     </>
   );
 };

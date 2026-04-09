@@ -15,15 +15,15 @@ import '../App.css';
 function GamePage() {
   const { sessionId } = useParams();
   const navigate = useNavigate();
-  const { token, user } = useAuth();
-  
+  const { token } = useAuth();
+
   const [session, setSession] = useState(null);
   const [currentRound, setCurrentRound] = useState(1);
   const [sessionLoading, setSessionLoading] = useState(true);
-  
+
   const { currentCity, loading: cityLoading, fetchRandomCity } = useCity();
   const { hint, loading: hintLoading, fetchHint, resetHint } = useHint();
-  const { score, guessedCoords, lastResult, submitting, handleMapClick, submitGuess, resetGuess } = useGame();
+  const { guessedCoords, lastResult, submitting, handleMapClick, submitGuess, resetGuess } = useGame();
 
   // Загрузить сессию
   useEffect(() => {
@@ -35,12 +35,12 @@ function GamePage() {
       const data = await gameSessionAPI.getSession(sessionId, token);
       setSession(data);
       setCurrentRound(data.rounds.length + 1);
-      
+
       if (data.completed_at || data.rounds.length >= data.total_rounds) {
         navigate(`/game-results/${sessionId}`);
         return;
       }
-      
+
       if (!currentCity) {
         await fetchRandomCity();
       }
@@ -54,9 +54,16 @@ function GamePage() {
   };
 
   const handleFetchCity = async () => {
+    if (session && currentRound === session.total_rounds) {
+      navigate(`/game-results/${sessionId}`);
+      return;
+    }
+
     await fetchRandomCity();
     resetHint();
     resetGuess();
+
+    setCurrentRound(prev => prev + 1);
   };
 
   const handleFetchHint = async () => {
@@ -67,10 +74,10 @@ function GamePage() {
 
   const handleSubmit = async () => {
     if (!currentCity || !guessedCoords) return;
-    
+
     try {
       const result = await submitGuess(currentCity.id);
-      
+
       await gameSessionAPI.saveRound(
         sessionId,
         {
@@ -83,18 +90,9 @@ function GamePage() {
         },
         token
       );
-      
+
       const updatedSession = await gameSessionAPI.getSession(sessionId, token);
       setSession(updatedSession);
-      
-      if (updatedSession.rounds.length >= updatedSession.total_rounds) {
-        setTimeout(() => {
-          navigate(`/game-results/${sessionId}`);
-        }, 2000);
-      } else {
-        setCurrentRound(currentRound + 1);
-      }
-      
     } catch (error) {
       console.error('Error submitting guess:', error);
       alert('Ошибка при отправке ответа');
@@ -106,14 +104,16 @@ function GamePage() {
       <div className="app">
         <Header score={0} />
         <div className="container">
-          <div style={{ 
-            display: 'flex', 
-            justifyContent: 'center', 
-            alignItems: 'center',
-            color: '#ffffff',
-            fontSize: '24px',
-            width: '100%'
-          }}>
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              color: '#ffffff',
+              fontSize: '24px',
+              width: '100%',
+            }}
+          >
             ⏳ Загрузка игры...
           </div>
         </div>
@@ -132,10 +132,12 @@ function GamePage() {
             <div style={{ color: '#ffffff' }}>
               <p style={{ fontSize: '18px', margin: '15px 0' }}>
                 <strong>Раунд:</strong>{' '}
-                <span style={{ 
-                  fontSize: '24px', 
-                  color: '#ffd700' 
-                }}>
+                <span
+                  style={{
+                    fontSize: '24px',
+                    color: '#ffd700',
+                  }}
+                >
                   {currentRound}/{session.total_rounds}
                 </span>
               </p>
@@ -145,30 +147,35 @@ function GamePage() {
                   {session.total_score}
                 </span>
               </p>
-              
-              {/* Прогресс-бар */}
-              <div style={{
-                marginTop: '20px',
-                background: 'rgba(0, 0, 0, 0.3)',
-                borderRadius: '10px',
-                height: '20px',
-                overflow: 'hidden',
-                border: '1px solid rgba(102, 126, 234, 0.3)'
-              }}>
-                <div style={{
-                  width: `${(session.rounds.length / session.total_rounds) * 100}%`,
-                  height: '100%',
-                  background: 'linear-gradient(90deg, #667eea 0%, #764ba2 100%)',
-                  transition: 'width 0.3s ease'
-                }} />
+
+              <div
+                style={{
+                  marginTop: '20px',
+                  background: 'rgba(0, 0, 0, 0.3)',
+                  borderRadius: '10px',
+                  height: '20px',
+                  overflow: 'hidden',
+                  border: '1px solid rgba(102, 126, 234, 0.3)',
+                }}
+              >
+                <div
+                  style={{
+                    width: `${(session.rounds.length / session.total_rounds) * 100}%`,
+                    height: '100%',
+                    background: 'linear-gradient(90deg, #667eea 0%, #764ba2 100%)',
+                    transition: 'width 0.3s ease',
+                  }}
+                />
               </div>
-              
-              <p style={{ 
-                fontSize: '12px', 
-                color: '#b8c5d6', 
-                marginTop: '10px',
-                textAlign: 'center'
-              }}>
+
+              <p
+                style={{
+                  fontSize: '12px',
+                  color: '#b8c5d6',
+                  marginTop: '10px',
+                  textAlign: 'center',
+                }}
+              >
                 Завершено: {session.rounds.length} из {session.total_rounds}
               </p>
             </div>

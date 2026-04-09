@@ -6,16 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="725bc41c-a2d1-48d5-9700-3a57c006ae2b" name="Changes" comment="update">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guess_area/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/guess_area/src/App.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guess_area/src/components/Footer.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/guess_area/src/components/Footer.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guess_area/src/components/Header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/guess_area/src/components/Header.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guess_area/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/guess_area/src/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guess_area/src/pages/LoginPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/guess_area/src/pages/LoginPage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guess_area/src/pages/RegisterPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/guess_area/src/pages/RegisterPage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guess_area/src/pages/WelcomePage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/guess_area/src/pages/WelcomePage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guess_area/src/styles/AuthPages.css" beforeDir="false" afterPath="$PROJECT_DIR$/guess_area/src/styles/AuthPages.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guess_area/src/styles/GameResults.css" beforeDir="false" afterPath="$PROJECT_DIR$/guess_area/src/styles/GameResults.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guess_area/src/styles/GameSetup.css" beforeDir="false" afterPath="$PROJECT_DIR$/guess_area/src/styles/GameSetup.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guess_area/src/components/GamePanel.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/guess_area/src/components/GamePanel.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guess_area/src/pages/GamePageWithSession.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/guess_area/src/pages/GamePageWithSession.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,7 +18,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="feature/graphics_and_auth" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -54,33 +46,33 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;JavaScript Debug.index.html.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.GoLinterPluginOnboarding&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.GoLinterPluginStorageMigration&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.modules.go.list.on.any.changes.was.set&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;feature/graphics__and__auth&quot;,
-    &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
-    &quot;go.sdk.automatically.set&quot;: &quot;true&quot;,
-    &quot;javascript.preferred.runtime.type.id&quot;: &quot;node&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/shadow473/SSRVP/guess_area_api&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;consents&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "JavaScript Debug.index.html.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.GoLinterPluginOnboarding": "true",
+    "RunOnceActivity.GoLinterPluginStorageMigration": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.go.formatter.settings.were.checked": "true",
+    "RunOnceActivity.go.migrated.go.modules.settings": "true",
+    "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "git-widget-placeholder": "feature/fix__bugs",
+    "go.import.settings.migrated": "true",
+    "go.sdk.automatically.set": "true",
+    "javascript.preferred.runtime.type.id": "node",
+    "last_opened_file_path": "/home/shadow473/SSRVP/guess_area_api",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "consents",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\kay-y\PycharmProjects\SSRVP\guess_area" />
