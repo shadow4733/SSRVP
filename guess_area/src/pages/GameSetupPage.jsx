@@ -168,10 +168,10 @@ function GameSetupPage() {
                     <div className="leaderboard-user">
                       <div className="leaderboard-username">{player.username}</div>
                       <div className="leaderboard-meta">
-                        Всего игр: {player.games_played}
+                        Игр в формате: {player.games_played}
                       </div>
                     </div>
-                    <div className="leaderboard-score">{player.total_score}</div>
+                    <div className="leaderboard-score">{player.best_score}</div>
                   </div>
                 ))}
               </div>

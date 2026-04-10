@@ -8,6 +8,7 @@ const GamePanel = ({
   loading,
   hintLoading,
   submitting,
+  timeLeft = null,
   onFetchCity,
   onFetchHint,
   onSubmit,
@@ -33,6 +34,7 @@ const GamePanel = ({
   }
 
   const hasResult = lastResult !== null;
+  const isTimedOut = Boolean(lastResult?.timed_out);
 
   return (
     <>
@@ -91,6 +93,18 @@ const GamePanel = ({
       >
         <em>Нажмите на карту в предполагаемом месте города, затем нажмите "Подтвердить".</em>
       </p>
+      {!hasResult && typeof timeLeft === 'number' && (
+        <p
+          style={{
+            marginTop: '10px',
+            color: timeLeft <= 10 ? '#ff9b9b' : '#ffd700',
+            fontSize: '16px',
+            textAlign: 'center',
+          }}
+        >
+          ⏱️ Осталось: {timeLeft}с
+        </p>
+      )}
 
       {!hasResult && (
         <button
@@ -111,20 +125,30 @@ const GamePanel = ({
         <div
           style={{
             marginTop: '15px',
-            padding: '15px',
-            background: 'linear-gradient(135deg, #11998e 0%, #38ef7d 100%)',
+            padding: isTimedOut ? '14px' : '15px',
+            background: isTimedOut
+              ? 'linear-gradient(135deg, #8b2e2e 0%, #c44545 100%)'
+              : 'linear-gradient(135deg, #11998e 0%, #38ef7d 100%)',
             borderRadius: '8px',
-            border: '2px solid #00d4ff',
-            boxShadow: '0 4px 15px rgba(17, 153, 142, 0.4)',
+            border: isTimedOut ? '2px solid #ff9b9b' : '2px solid #00d4ff',
+            boxShadow: isTimedOut
+              ? '0 4px 15px rgba(196, 69, 69, 0.35)'
+              : '0 4px 15px rgba(17, 153, 142, 0.4)',
             color: '#ffffff',
           }}
         >
-          <p style={{ margin: '0 0 8px 0', fontSize: '16px' }}>
-            <strong> Расстояние:</strong>{' '}
-            <span style={{ fontSize: '20px', fontWeight: 'bold' }}>
-              {lastResult.distance_km.toFixed(1)} км
-            </span>
-          </p>
+          {isTimedOut ? (
+            <p style={{ margin: '0 0 8px 0', fontSize: '16px' }}>
+              <strong>⏰ Время вышло.</strong> Раунд засчитан как пропуск.
+            </p>
+          ) : (
+            <p style={{ margin: '0 0 8px 0', fontSize: '16px' }}>
+              <strong> Расстояние:</strong>{' '}
+              <span style={{ fontSize: '20px', fontWeight: 'bold' }}>
+                {lastResult.distance_km.toFixed(1)} км
+              </span>
+            </p>
+          )}
           <p style={{ margin: '0', fontSize: '16px' }}>
             <strong> Получено очков:</strong>{' '}
             <span

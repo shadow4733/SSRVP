@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useCallback, useRef, useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useCity } from '../hooks/useCity';
@@ -12,6 +12,8 @@ import MapComponent from '../components/MapComponent';
 import GamePanel from '../components/GamePanel';
 import '../App.css';
 
+const ROUND_TIME_LIMIT_SECONDS = 30;
+
 function GamePage() {
   const { sessionId } = useParams();
   const navigate = useNavigate();
@@ -20,10 +22,15 @@ function GamePage() {
   const [session, setSession] = useState(null);
   const [currentRound, setCurrentRound] = useState(1);
   const [sessionLoading, setSessionLoading] = useState(true);
+  const [timeLeft, setTimeLeft] = useState(ROUND_TIME_LIMIT_SECONDS);
+  const [roundTimeoutResult, setRoundTimeoutResult] = useState(null);
+  const timeoutTriggeredRef = useRef(false);
 
   const { currentCity, loading: cityLoading, fetchRandomCity } = useCity();
   const { hint, loading: hintLoading, fetchHint, resetHint } = useHint();
   const { guessedCoords, lastResult, submitting, handleMapClick, submitGuess, resetGuess } = useGame();
+  const roundResult = lastResult || roundTimeoutResult;
+  const isRoundActive = Boolean(session && currentCity && roundResult === null && !submitting);
 
   useEffect(() => {
     loadSession();
@@ -34,6 +41,9 @@ function GamePage() {
       const data = await gameSessionAPI.getSession(sessionId, token);
       setSession(data);
       setCurrentRound(data.rounds.length + 1);
+      setTimeLeft(ROUND_TIME_LIMIT_SECONDS);
+      setRoundTimeoutResult(null);
+      timeoutTriggeredRef.current = false;
 
       if (data.completed_at || data.rounds.length >= data.total_rounds) {
         navigate(`/game-results/${sessionId}`);
@@ -53,7 +63,7 @@ function GamePage() {
   };
 
   const handleMapClickConditional = (coords) => {
-    if (lastResult === null) {
+    if (roundResult === null) {
       handleMapClick(coords);
     }
   };
@@ -67,6 +77,9 @@ function GamePage() {
     await fetchRandomCity();
     resetHint();
     resetGuess();
+    setRoundTimeoutResult(null);
+    setTimeLeft(ROUND_TIME_LIMIT_SECONDS);
+    timeoutTriggeredRef.current = false;
     setCurrentRound(prev => prev + 1);
   };
 
@@ -76,11 +89,12 @@ function GamePage() {
     }
   };
 
-  const handleSubmit = async () => {
-    if (!currentCity || !guessedCoords) return;
+  const handleSubmit = useCallback(async () => {
+    if (!currentCity || !guessedCoords || roundResult !== null) return;
 
     try {
       const result = await submitGuess(currentCity.id);
+      setRoundTimeoutResult(null);
 
       await gameSessionAPI.saveRound(
         sessionId,
@@ -101,7 +115,82 @@ function GamePage() {
       console.error('Error submitting guess:', error);
       alert('Ошибка при отправке ответа');
     }
-  };
+  }, [currentCity, guessedCoords, roundResult, submitGuess, sessionId, currentRound, token]);
+
+  const handleRoundTimeout = useCallback(async () => {
+    if (
+      !session ||
+      !currentCity ||
+      timeoutTriggeredRef.current ||
+      roundResult !== null ||
+      submitting
+    ) {
+      return;
+    }
+
+    timeoutTriggeredRef.current = true;
+
+    try {
+      if (guessedCoords) {
+        await handleSubmit();
+        return;
+      }
+
+      await gameSessionAPI.saveRound(
+        sessionId,
+        {
+          city_id: currentCity.id,
+          round_number: currentRound,
+          guessed_lat: 0,
+          guessed_lng: 0,
+          distance_meters: 0,
+          points_earned: 0,
+        },
+        token
+      );
+
+      const updatedSession = await gameSessionAPI.getSession(sessionId, token);
+      setSession(updatedSession);
+      setRoundTimeoutResult({
+        distance_km: 0,
+        earned_points: 0,
+        city_latitude: currentCity.latitude,
+        city_longitude: currentCity.longitude,
+        timed_out: true,
+      });
+    } catch (error) {
+      console.error('Error handling timeout:', error);
+      alert('Ошибка при завершении раунда по таймеру');
+    }
+  }, [
+    session,
+    currentCity,
+    roundResult,
+    submitting,
+    guessedCoords,
+    handleSubmit,
+    sessionId,
+    currentRound,
+    token,
+  ]);
+
+  useEffect(() => {
+    if (!isRoundActive || timeLeft <= 0) {
+      return undefined;
+    }
+
+    const intervalId = setInterval(() => {
+      setTimeLeft(prev => (prev > 0 ? prev - 1 : 0));
+    }, 1000);
+
+    return () => clearInterval(intervalId);
+  }, [isRoundActive, timeLeft]);
+
+  useEffect(() => {
+    if (isRoundActive && timeLeft === 0 && !timeoutTriggeredRef.current) {
+      handleRoundTimeout();
+    }
+  }, [isRoundActive, timeLeft, handleRoundTimeout]);
 
   if (sessionLoading) {
     return (
@@ -151,6 +240,17 @@ function GamePage() {
                   {session.total_score}
                 </span>
               </p>
+              <p style={{ fontSize: '16px', margin: '10px 0' }}>
+                <strong>Время раунда:</strong>{' '}
+                <span
+                  style={{
+                    color: timeLeft <= 10 ? '#ff6b6b' : '#ffd700',
+                    fontSize: '22px',
+                  }}
+                >
+                  {timeLeft}с
+                </span>
+              </p>
 
               <div
                 style={{
@@ -190,8 +290,8 @@ function GamePage() {
           currentCity={currentCity}
           guessedCoords={guessedCoords}
           onMapClick={handleMapClickConditional}
-          showLine={lastResult !== null}
-          actualCityCoords={lastResult ? [lastResult.city_latitude, lastResult.city_longitude] : null}
+          showLine={roundResult !== null}
+          actualCityCoords={roundResult ? [roundResult.city_latitude, roundResult.city_longitude] : null}
         />
 
         <Sidebar position="right">
@@ -199,11 +299,12 @@ function GamePage() {
           <GamePanel
             currentCity={currentCity}
             hint={hint}
-            lastResult={lastResult}
+            lastResult={roundResult}
             guessedCoords={guessedCoords}
             loading={cityLoading}
             hintLoading={hintLoading}
             submitting={submitting}
+            timeLeft={timeLeft}
             onFetchCity={handleFetchCity}
             onFetchHint={handleFetchHint}
             onSubmit={handleSubmit}

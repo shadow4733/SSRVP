@@ -4,10 +4,12 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="725bc41c-a2d1-48d5-9700-3a57c006ae2b" name="Changes" comment="bugs fix">
+    <list default="true" id="725bc41c-a2d1-48d5-9700-3a57c006ae2b" name="Changes" comment="created top players">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/guess_area/src/components/GamePanel.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/guess_area/src/components/GamePanel.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/guess_area/src/pages/GamePageWithSession.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/guess_area/src/pages/GamePageWithSession.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guess_area/src/pages/GameSetupPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/guess_area/src/pages/GameSetupPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guess_area_api/src/service/game_session_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/guess_area_api/src/service/game_session_service.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,12 +31,12 @@
     &quot;assignee&quot;: &quot;UESSENCE&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/shadow4733/SSRVP.git&quot;,
-    &quot;accountId&quot;: &quot;9478a15f-8c91-414a-9e11-3c53fb5f62dd&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/shadow4733/SSRVP.git",
+    "accountId": "ed366f7b-8fb9-4c5d-8c50-5adbcf1ac99a"
   }
-}</component>
+}]]></component>
   <component name="GoLibraries">
     <option name="indexEntireGoPath" value="true" />
   </component>
@@ -59,7 +61,7 @@
     "RunOnceActivity.go.migrated.go.modules.settings": "true",
     "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "git-widget-placeholder": "feature/fix__bugs",
+    "git-widget-placeholder": "master",
     "go.import.settings.migrated": "true",
     "go.sdk.automatically.set": "true",
     "javascript.preferred.runtime.type.id": "node",
@@ -233,7 +235,15 @@
       <option name="project" value="LOCAL" />
       <updated>1775730882363</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="created top players">
+      <option name="closed" value="true" />
+      <created>1775826536696</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1775826536696</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -269,7 +279,8 @@
     <MESSAGE value="refactor docker compose" />
     <MESSAGE value="update" />
     <MESSAGE value="bugs fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="bugs fix" />
+    <MESSAGE value="created top players" />
+    <option name="LAST_COMMIT_MESSAGE" value="created top players" />
   </component>
   <component name="VgoProject">
     <integration-enabled>false</integration-enabled>

@@ -158,10 +158,11 @@ class GameSessionService:
         query = self.db.query(
             User.id.label("user_id"),
             User.username.label("username"),
-            func.sum(GameSession.total_score).label("total_score"),
+            func.max(GameSession.total_score).label("total_score"),
             func.count(GameSession.id).label("games_played"),
             func.sum(GameSession.total_rounds).label("total_rounds_played"),
-            func.max(GameSession.total_score).label("best_score")
+            func.max(GameSession.total_score).label("best_score"),
+            func.avg(GameSession.total_score).label("average_score")
         ).join(
             GameSession,
             GameSession.user_id == User.id
@@ -176,7 +177,8 @@ class GameSessionService:
 
         rows = query.group_by(User.id, User.username)\
             .order_by(
-                func.sum(GameSession.total_score).desc(),
+                func.max(GameSession.total_score).desc(),
+                func.avg(GameSession.total_score).desc(),
                 func.count(GameSession.id).desc(),
                 func.sum(GameSession.total_rounds).desc(),
                 User.username.asc()
@@ -189,7 +191,7 @@ class GameSessionService:
             total_score = int(row.total_score or 0)
             games_played = int(row.games_played or 0)
             total_rounds_played = int(row.total_rounds_played or 0)
-            average_score = total_score // games_played if games_played > 0 else 0
+            average_score = int(row.average_score or 0)
             top_players.append({
                 "rank": rank,
                 "user_id": row.user_id,
