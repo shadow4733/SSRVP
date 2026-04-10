@@ -1,7 +1,7 @@
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, Depends, HTTPException, Query, status
 from sqlalchemy.orm import Session
 from pydantic import BaseModel
-from typing import List, Optional
+from typing import List, Literal, Optional
 
 from ..database import get_db
 from ..service.game_session_service import GameSessionService
@@ -60,6 +60,17 @@ class UserStatsResponse(BaseModel):
     member_since: Optional[str]
 
 
+class TopPlayerResponse(BaseModel):
+    rank: int
+    user_id: int
+    username: str
+    total_score: int
+    games_played: int
+    total_rounds_played: int
+    average_score: int
+    best_score: int
+
+
 @router.post("/create", response_model=CreateSessionResponse, status_code=status.HTTP_201_CREATED)
 async def create_game_session(
     request: CreateSessionRequest,
@@ -88,7 +99,7 @@ async def create_game_session(
     )
 
 
-@router.get("/{session_id}", response_model=SessionResponse)
+@router.get("/{session_id:int}", response_model=SessionResponse)
 async def get_game_session(
     session_id: int,
     current_user: User = Depends(get_current_user),
@@ -123,7 +134,7 @@ async def get_game_session(
     )
 
 
-@router.post("/{session_id}/round", response_model=RoundResponse)
+@router.post("/{session_id:int}/round", response_model=RoundResponse)
 async def save_game_round(
     session_id: int,
     request: SaveRoundRequest,
@@ -159,7 +170,7 @@ async def save_game_round(
     )
 
 
-@router.post("/{session_id}/complete", response_model=SessionResponse)
+@router.post("/{session_id:int}/complete", response_model=SessionResponse)
 async def complete_game_session(
     session_id: int,
     current_user: User = Depends(get_current_user),
@@ -204,3 +215,23 @@ async def get_my_stats(
     service = GameSessionService(db)
     stats = service.get_user_stats(current_user.id)
     return UserStatsResponse(**stats)
+
+
+@router.get("/stats/leaderboard", response_model=List[TopPlayerResponse])
+async def get_leaderboard(
+    period: Literal["week", "month", "all"] = "all",
+    rounds: Optional[int] = Query(default=None),
+    limit: int = Query(default=10, ge=1, le=100),
+    _current_user: User = Depends(get_current_user),
+    db: Session = Depends(get_db)
+):
+    """Получает топ игроков за период: неделя, месяц или всё время"""
+    if rounds is not None and rounds not in [3, 5, 10, 15]:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Rounds must be 3, 5, 10, or 15"
+        )
+
+    service = GameSessionService(db)
+    top_players = service.get_top_players(period=period, rounds=rounds, limit=limit)
+    return [TopPlayerResponse(**player) for player in top_players]

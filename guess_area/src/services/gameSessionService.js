@@ -79,4 +79,22 @@ export const gameSessionAPI = {
 
     return response.json();
   },
+
+  getLeaderboard: async (token, period = 'all', rounds = 'all') => {
+    const params = new URLSearchParams({ period });
+    if (rounds !== 'all') {
+      params.set('rounds', rounds);
+    }
+    const response = await fetch(`${API_URL}/game/session/stats/leaderboard?${params.toString()}`, {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error('Failed to get leaderboard');
+    }
+
+    return response.json();
+  },
 };

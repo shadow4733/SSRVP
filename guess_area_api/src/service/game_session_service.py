@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
 from sqlalchemy import func
-from datetime import datetime
+from datetime import datetime, timedelta
 from fastapi import HTTPException, status
 
 from ..models.game_sessions import GameSession
@@ -145,3 +145,60 @@ class GameSessionService:
             "best_score": best_score,
             "member_since": user.created_at.isoformat() if user.created_at else None
         }
+
+    def get_top_players(self, period: str = "all", rounds: int | None = None, limit: int = 10) -> list[dict]:
+        """Возвращает топ игроков за указанный период"""
+        date_from = None
+        now = datetime.utcnow()
+        if period == "week":
+            date_from = now - timedelta(days=7)
+        elif period == "month":
+            date_from = now - timedelta(days=30)
+
+        query = self.db.query(
+            User.id.label("user_id"),
+            User.username.label("username"),
+            func.sum(GameSession.total_score).label("total_score"),
+            func.count(GameSession.id).label("games_played"),
+            func.sum(GameSession.total_rounds).label("total_rounds_played"),
+            func.max(GameSession.total_score).label("best_score")
+        ).join(
+            GameSession,
+            GameSession.user_id == User.id
+        ).filter(
+            GameSession.completed_at.isnot(None)
+        )
+
+        if date_from:
+            query = query.filter(GameSession.completed_at >= date_from)
+        if rounds is not None:
+            query = query.filter(GameSession.total_rounds == rounds)
+
+        rows = query.group_by(User.id, User.username)\
+            .order_by(
+                func.sum(GameSession.total_score).desc(),
+                func.count(GameSession.id).desc(),
+                func.sum(GameSession.total_rounds).desc(),
+                User.username.asc()
+            )\
+            .limit(limit)\
+            .all()
+
+        top_players = []
+        for rank, row in enumerate(rows, start=1):
+            total_score = int(row.total_score or 0)
+            games_played = int(row.games_played or 0)
+            total_rounds_played = int(row.total_rounds_played or 0)
+            average_score = total_score // games_played if games_played > 0 else 0
+            top_players.append({
+                "rank": rank,
+                "user_id": row.user_id,
+                "username": row.username,
+                "total_score": total_score,
+                "games_played": games_played,
+                "total_rounds_played": total_rounds_played,
+                "average_score": average_score,
+                "best_score": int(row.best_score or 0)
+            })
+
+        return top_players
