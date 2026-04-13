@@ -9,6 +9,11 @@ import '../styles/GameSetup.css';
 function GameSetupPage() {
   const [selectedRounds, setSelectedRounds] = useState(5);
   const [loading, setLoading] = useState(false);
+  const [multiplayerLoading, setMultiplayerLoading] = useState(false);
+  const [multiplayerError, setMultiplayerError] = useState('');
+  const [roomCodeInput, setRoomCodeInput] = useState('');
+  const [roomInfo, setRoomInfo] = useState(null);
+  const [copyStatus, setCopyStatus] = useState('');
   const [stats, setStats] = useState(null);
   const [loadingStats, setLoadingStats] = useState(true);
   const [leaderboard, setLeaderboard] = useState([]);
@@ -63,6 +68,51 @@ function GameSetupPage() {
       alert('Ошибка при создании игры: ' + error.message);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleCreateMultiplayerRoom = async (mode) => {
+    setMultiplayerLoading(true);
+    setMultiplayerError('');
+    setCopyStatus('');
+    try {
+      const response = await gameSessionAPI.createMultiplayerRoom(mode, selectedRounds, token);
+      setRoomInfo(response);
+      setRoomCodeInput(response.room_code);
+    } catch (error) {
+      setMultiplayerError(`Ошибка создания комнаты: ${error.message}`);
+    } finally {
+      setMultiplayerLoading(false);
+    }
+  };
+
+  const handleJoinMultiplayerRoom = async () => {
+    if (!roomCodeInput.trim()) {
+      setMultiplayerError('Введите код комнаты');
+      return;
+    }
+
+    setMultiplayerLoading(true);
+    setMultiplayerError('');
+    try {
+      const response = await gameSessionAPI.joinMultiplayerRoom(roomCodeInput.trim().toUpperCase(), token);
+      navigate(`/game/${response.session_id}`);
+    } catch (error) {
+      setMultiplayerError(`Ошибка входа в комнату: ${error.message}`);
+    } finally {
+      setMultiplayerLoading(false);
+    }
+  };
+
+  const handleCopyRoomCode = async () => {
+    if (!roomInfo?.room_code || !navigator.clipboard) {
+      return;
+    }
+    try {
+      await navigator.clipboard.writeText(roomInfo.room_code);
+      setCopyStatus('Код скопирован');
+    } catch {
+      setCopyStatus('Не удалось скопировать код');
     }
   };
 
@@ -178,6 +228,67 @@ function GameSetupPage() {
             )}
           </div>
 
+          <div className="multiplayer-panel">
+            <h2>👥 Мультиплеер</h2>
+            <p className="multiplayer-description">
+              Создайте дуэль 1v1 или безлимитную комнату, куда может зайти любое количество игроков.
+            </p>
+            <div className="multiplayer-actions">
+              <button
+                type="button"
+                className="multiplayer-btn duel-btn"
+                onClick={() => handleCreateMultiplayerRoom('duel')}
+                disabled={multiplayerLoading || loading}
+              >
+                ⚔️ Дуэль
+              </button>
+              <button
+                type="button"
+                className="multiplayer-btn room-btn"
+                onClick={() => handleCreateMultiplayerRoom('room')}
+                disabled={multiplayerLoading || loading}
+              >
+                🏠 Создать комнату
+              </button>
+            </div>
+
+            <div className="join-room-row">
+              <input
+                type="text"
+                value={roomCodeInput}
+                onChange={(event) => setRoomCodeInput(event.target.value.toUpperCase())}
+                placeholder="Код комнаты"
+                maxLength={12}
+              />
+              <button
+                type="button"
+                onClick={handleJoinMultiplayerRoom}
+                disabled={multiplayerLoading || loading}
+              >
+                Войти
+              </button>
+            </div>
+
+            {multiplayerError && <p className="multiplayer-state error">{multiplayerError}</p>}
+
+            {roomInfo && (
+              <div className="room-card">
+                <p><strong>Код комнаты:</strong> {roomInfo.room_code}</p>
+                <p>
+                  <strong>Режим:</strong>{' '}
+                  {roomInfo.mode === 'duel' ? 'Дуэль (2 игрока)' : 'Общая комната (без лимита)'}
+                </p>
+                <p><strong>Раундов:</strong> {roomInfo.total_rounds}</p>
+                <p><strong>Участников:</strong> {roomInfo.participants_count}</p>
+                <div className="room-card-actions">
+                  <button type="button" onClick={handleCopyRoomCode}>Скопировать код</button>
+                  <button type="button" onClick={() => navigate(`/game/${roomInfo.session_id}`)}>В лобби</button>
+                </div>
+                {copyStatus && <p className="multiplayer-state">{copyStatus}</p>}
+              </div>
+            )}
+          </div>
+
           <div className="rounds-selection">
             <h2>Выберите количество раундов:</h2>
             <div className="rounds-grid">
@@ -198,7 +309,7 @@ function GameSetupPage() {
           <button
             className="start-game-btn"
             onClick={handleStartGame}
-            disabled={loading}
+            disabled={loading || multiplayerLoading}
           >
             {loading ? '⏳ Создание игры...' : '🚀 Начать игру'}
           </button>

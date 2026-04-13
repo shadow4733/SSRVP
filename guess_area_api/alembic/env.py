@@ -13,6 +13,10 @@ from src.database import Base
 from src.models.user import User
 from src.models.city import City
 from src.models.game_sessions import GameSession
+from src.models.game_round import GameRound
+from src.models.multiplayer_room import MultiplayerRoom
+from src.models.multiplayer_room_participant import MultiplayerRoomParticipant
+from src.models.multiplayer_room_round import MultiplayerRoomRound
 
 from alembic import context
 from sqlalchemy import engine_from_config, pool

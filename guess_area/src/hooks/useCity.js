@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { api } from '../api';
 
 export const useCity = () => {
@@ -6,36 +6,46 @@ export const useCity = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const fetchRandomCity = async () => {
+  const setCity = useCallback((data) => {
+    if (!data?.id) {
+      return;
+    }
+    const latitude = Number(data.latitude);
+    const longitude = Number(data.longitude);
+    setCurrentCity({
+      id: data.id,
+      name: data.name,
+      latitude,
+      longitude,
+      coords: [latitude, longitude],
+    });
+  }, []);
+
+  const fetchRandomCity = useCallback(async () => {
     setLoading(true);
     setError(null);
     try {
       const data = await api.city.getRandom();
-      if (data.id) {
-        setCurrentCity({
-          id: data.id,
-          name: data.name,
-          coords: [data.latitude, data.longitude]
-        });
-      }
+      setCity(data);
     } catch (err) {
       setError('Не удалось получить город с сервера');
       console.error('Ошибка при получении города:', err);
     } finally {
       setLoading(false);
     }
-  };
+  }, [setCity]);
 
-  const resetCity = () => {
+  const resetCity = useCallback(() => {
     setCurrentCity(null);
     setError(null);
-  };
+  }, []);
 
   return {
     currentCity,
     loading,
     error,
     fetchRandomCity,
-    resetCity
+    resetCity,
+    setCity,
   };
 };

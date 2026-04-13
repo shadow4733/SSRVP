@@ -3,6 +3,7 @@ from sqlalchemy.sql import func, expression
 from sqlalchemy.orm import relationship
 from ..database import Base
 
+
 class User(Base):
     __tablename__ = 'users'
 
@@ -14,3 +15,5 @@ class User(Base):
     games_played = Column(Integer, server_default=expression.text('0'), default=0)
     created_at = Column(DateTime, server_default=func.now(), default=func.now())
     game_sessions = relationship('GameSession', back_populates='user', cascade='all, delete-orphan')
+    hosted_rooms = relationship('MultiplayerRoom', back_populates='host_user', cascade='all, delete-orphan')
+    room_memberships = relationship('MultiplayerRoomParticipant', back_populates='user', cascade='all, delete-orphan')

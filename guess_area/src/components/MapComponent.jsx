@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { MapContainer, TileLayer, Marker, Popup, Polyline, useMapEvents, useMap } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, Popup, Polyline, CircleMarker, useMapEvents, useMap } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { MAP_CONFIG, ACTIVE_TILE_STYLE } from '../utils/mapConfig';
@@ -38,7 +38,16 @@ function BoundsEnforcer() {
   return null;
 }
 
-const MapComponent = ({ currentCity, guessedCoords, onMapClick, showLine, actualCityCoords }) => {
+const OPPONENT_COLORS = ['#ff6b6b', '#ff9f43', '#f368e0', '#10ac84', '#48dbfb', '#54a0ff'];
+
+const MapComponent = ({
+  currentCity,
+  guessedCoords,
+  onMapClick,
+  showLine,
+  actualCityCoords,
+  opponentGuesses = [],
+}) => {
   const tileStyle = MAP_CONFIG.tileStyles[ACTIVE_TILE_STYLE];
   const bounds = [MAP_CONFIG.bounds.southwest, MAP_CONFIG.bounds.northeast];
 
@@ -92,6 +101,27 @@ const MapComponent = ({ currentCity, guessedCoords, onMapClick, showLine, actual
           weight={3}
         />
       )}
+
+      {showLine && opponentGuesses.map((guess, index) => {
+        if (guess.guessed_lat === null || guess.guessed_lng === null) {
+          return null;
+        }
+        const color = OPPONENT_COLORS[index % OPPONENT_COLORS.length];
+        return (
+          <CircleMarker
+            key={`${guess.user_id}-${index}`}
+            center={[guess.guessed_lat, guess.guessed_lng]}
+            radius={9}
+            pathOptions={{ color, fillColor: color, fillOpacity: 0.7, weight: 2 }}
+          >
+            <Popup>
+              🎯 {guess.username}
+              <br />
+              Очки за раунд: {guess.points_earned}
+            </Popup>
+          </CircleMarker>
+        );
+      })}
 
       <ClickHandler onMapClick={onMapClick} />
     </MapContainer>

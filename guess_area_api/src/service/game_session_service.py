@@ -2,6 +2,7 @@ from sqlalchemy.orm import Session
 from sqlalchemy import func
 from datetime import datetime, timedelta
 from fastapi import HTTPException, status
+from typing import Optional
 
 from ..models.game_sessions import GameSession
 from ..models.game_round import GameRound
@@ -50,8 +51,8 @@ class GameSessionService:
         session_id: int,
         city_id: int,
         round_number: int,
-        guessed_lat: float,
-        guessed_lng: float,
+        guessed_lat: Optional[float],
+        guessed_lng: Optional[float],
         distance_meters: int,
         points_earned: int
     ) -> GameRound:
@@ -66,6 +67,23 @@ class GameSessionService:
             raise HTTPException(
                 status_code=status.HTTP_400_BAD_REQUEST,
                 detail="All rounds already played"
+            )
+
+        existing_round = self.db.query(GameRound.id).filter(
+            GameRound.session_id == session_id,
+            GameRound.round_number == round_number,
+        ).first()
+        if existing_round:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail="Round already submitted"
+            )
+
+        expected_round_number = int(current_rounds or 0) + 1
+        if round_number != expected_round_number:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail="Invalid round number order"
             )
         
         game_round = GameRound(

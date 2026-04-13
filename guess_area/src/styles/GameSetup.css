@@ -195,6 +195,129 @@
   text-align: right;
 }
 
+.multiplayer-panel {
+  margin-bottom: 40px;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+}
+
+.multiplayer-panel h2 {
+  margin: 0;
+  color: #ffffff;
+  font-size: 24px;
+}
+
+.multiplayer-description {
+  margin: 12px 0 20px;
+  color: #dbe6ff;
+  font-size: 15px;
+}
+
+.multiplayer-actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.multiplayer-btn {
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+  padding: 12px;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.multiplayer-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+}
+
+.multiplayer-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.duel-btn {
+  background: linear-gradient(135deg, #a044ff 0%, #6a3093 100%);
+  box-shadow: 0 6px 18px rgba(106, 48, 147, 0.35);
+}
+
+.room-btn {
+  background: linear-gradient(135deg, #1f8a70 0%, #2dc653 100%);
+  box-shadow: 0 6px 18px rgba(45, 198, 83, 0.35);
+}
+
+.join-room-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.join-room-row input {
+  border-radius: 10px;
+  border: 1px solid rgba(102, 126, 234, 0.5);
+  background: rgba(102, 126, 234, 0.1);
+  color: #ffffff;
+  padding: 10px 12px;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+.join-room-row input:focus {
+  outline: none;
+  border-color: #ffd700;
+}
+
+.join-room-row button,
+.room-card-actions button {
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #ffffff;
+  padding: 10px 14px;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.join-room-row button:disabled,
+.room-card-actions button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.multiplayer-state {
+  margin: 0;
+  color: #dbe6ff;
+  font-size: 14px;
+}
+
+.multiplayer-state.error {
+  color: #ff9b9b;
+}
+
+.room-card {
+  border: 1px solid rgba(102, 126, 234, 0.3);
+  border-radius: 10px;
+  background: rgba(102, 126, 234, 0.1);
+  padding: 14px;
+  color: #ffffff;
+}
+
+.room-card p {
+  margin: 6px 0;
+}
+
+.room-card-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
 /* Выбор раундов */
 .rounds-selection h2 {
   color: #ffffff;
@@ -315,5 +438,13 @@
     width: 100%;
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .multiplayer-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .room-card-actions {
+    flex-direction: column;
   }
 }

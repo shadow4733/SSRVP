@@ -33,6 +33,21 @@ export const gameSessionAPI = {
     return response.json();
   },
 
+  getSessionRoundCity: async (sessionId, roundNumber, token) => {
+    const response = await fetch(`${API_URL}/game/session/${sessionId}/round-city?round_number=${roundNumber}`, {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+      },
+    });
+
+    if (!response.ok) {
+      const error = await response.json();
+      throw new Error(error.detail || 'Failed to get round city');
+    }
+
+    return response.json();
+  },
+
   saveRound: async (sessionId, roundData, token) => {
     const response = await fetch(`${API_URL}/game/session/${sessionId}/round`, {
       method: 'POST',
@@ -93,6 +108,93 @@ export const gameSessionAPI = {
 
     if (!response.ok) {
       throw new Error('Failed to get leaderboard');
+    }
+
+    return response.json();
+  },
+
+  createMultiplayerRoom: async (mode, totalRounds, token) => {
+    const response = await fetch(`${API_URL}/game/session/multiplayer/create`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        mode,
+        total_rounds: totalRounds,
+      }),
+    });
+
+    if (!response.ok) {
+      const error = await response.json();
+      throw new Error(error.detail || 'Failed to create multiplayer room');
+    }
+
+    return response.json();
+  },
+
+  joinMultiplayerRoom: async (roomCode, token) => {
+    const response = await fetch(`${API_URL}/game/session/multiplayer/join`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      },
+      body: JSON.stringify({
+        room_code: roomCode,
+      }),
+    });
+
+    if (!response.ok) {
+      const error = await response.json();
+      throw new Error(error.detail || 'Failed to join multiplayer room');
+    }
+
+    return response.json();
+  },
+
+  getMultiplayerRoom: async (roomId, token) => {
+    const response = await fetch(`${API_URL}/game/session/multiplayer/${roomId}`, {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+      },
+    });
+
+    if (!response.ok) {
+      const error = await response.json();
+      throw new Error(error.detail || 'Failed to get multiplayer room state');
+    }
+
+    return response.json();
+  },
+
+  readyMultiplayerRoom: async (roomId, token) => {
+    const response = await fetch(`${API_URL}/game/session/multiplayer/${roomId}/ready`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+      },
+    });
+
+    if (!response.ok) {
+      const error = await response.json();
+      throw new Error(error.detail || 'Failed to mark player ready');
+    }
+
+    return response.json();
+  },
+
+  getMultiplayerRoundGuesses: async (roomId, roundNumber, token) => {
+    const response = await fetch(`${API_URL}/game/session/multiplayer/${roomId}/round/${roundNumber}/guesses`, {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+      },
+    });
+
+    if (!response.ok) {
+      const error = await response.json();
+      throw new Error(error.detail || 'Failed to get multiplayer round guesses');
     }
 
     return response.json();
