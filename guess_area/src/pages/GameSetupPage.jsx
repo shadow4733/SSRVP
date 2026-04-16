@@ -6,6 +6,10 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import '../styles/GameSetup.css';
 
+/**
+ * Страница настройки игры, статистики и мультиплеерных комнат.
+ * @returns {JSX.Element}
+ */
 function GameSetupPage() {
   const [selectedRounds, setSelectedRounds] = useState(5);
   const [loading, setLoading] = useState(false);
@@ -26,6 +30,10 @@ function GameSetupPage() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    /**
+     * Загружает персональную статистику игрока.
+     * @returns {Promise<void>}
+     */
     const loadStats = async () => {
       try {
         const data = await gameSessionAPI.getMyStats(token);
@@ -41,6 +49,10 @@ function GameSetupPage() {
   }, [token]);
 
   useEffect(() => {
+    /**
+     * Загружает таблицу лидеров по выбранным фильтрам.
+     * @returns {Promise<void>}
+     */
     const loadLeaderboard = async () => {
       setLoadingLeaderboard(true);
       setLeaderboardError('');
@@ -59,6 +71,10 @@ function GameSetupPage() {
     loadLeaderboard();
   }, [token, leaderboardPeriod, leaderboardRounds]);
 
+  /**
+   * Создает одиночную игру и открывает сессию.
+   * @returns {Promise<void>}
+   */
   const handleStartGame = async () => {
     setLoading(true);
     try {
@@ -71,6 +87,11 @@ function GameSetupPage() {
     }
   };
 
+  /**
+   * Создает мультиплеерную комнату в выбранном режиме.
+   * @param {'duel'|'room'} mode Режим создаваемой комнаты.
+   * @returns {Promise<void>}
+   */
   const handleCreateMultiplayerRoom = async (mode) => {
     setMultiplayerLoading(true);
     setMultiplayerError('');
@@ -86,6 +107,10 @@ function GameSetupPage() {
     }
   };
 
+  /**
+   * Подключает игрока к комнате по коду.
+   * @returns {Promise<void>}
+   */
   const handleJoinMultiplayerRoom = async () => {
     if (!roomCodeInput.trim()) {
       setMultiplayerError('Введите код комнаты');
@@ -104,6 +129,10 @@ function GameSetupPage() {
     }
   };
 
+  /**
+   * Копирует код комнаты в буфер обмена.
+   * @returns {Promise<void>}
+   */
   const handleCopyRoomCode = async () => {
     if (!roomInfo?.room_code || !navigator.clipboard) {
       return;
@@ -137,6 +166,11 @@ function GameSetupPage() {
     { value: '15', label: '15 раундов' },
   ];
 
+  /**
+   * Возвращает бейдж ранга в таблице лидеров.
+   * @param {number} rank Позиция игрока в рейтинге.
+   * @returns {string}
+   */
   const getRankBadge = (rank) => {
     if (rank === 1) return '🥇';
     if (rank === 2) return '🥈';

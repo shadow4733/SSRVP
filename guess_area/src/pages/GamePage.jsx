@@ -9,23 +9,39 @@ import MapComponent from '../components/MapComponent';
 import GamePanel from '../components/GamePanel';
 import '../App.css';
 
+/**
+ * Упрощенная страница одиночной игры.
+ * @returns {JSX.Element}
+ */
 function GamePage() {
   const { currentCity, loading: cityLoading, fetchRandomCity } = useCity();
   const { hint, loading: hintLoading, fetchHint, resetHint } = useHint();
   const { score, guessedCoords, lastResult, submitting, handleMapClick, submitGuess, resetGuess } = useGame();
 
+  /**
+   * Запрашивает новый город и очищает состояние раунда.
+   * @returns {Promise<void>}
+   */
   const handleFetchCity = async () => {
     await fetchRandomCity();
     resetHint();
     resetGuess();
   };
 
+  /**
+   * Загружает подсказку для текущего города.
+   * @returns {Promise<void>}
+   */
   const handleFetchHint = async () => {
     if (currentCity) {
       await fetchHint(currentCity.id);
     }
   };
 
+  /**
+   * Отправляет выбранную точку как ответ игрока.
+   * @returns {Promise<void>}
+   */
   const handleSubmit = async () => {
     if (currentCity && guessedCoords) {
       try {

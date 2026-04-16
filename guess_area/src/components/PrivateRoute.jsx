@@ -2,6 +2,11 @@ import React from 'react';
 import { Navigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
+/**
+ * Защищает маршрут от неавторизованных пользователей.
+ * @param {{children: React.ReactNode}} props Дочерние элементы маршрута.
+ * @returns {JSX.Element}
+ */
 function PrivateRoute({ children }) {
   const { isAuthenticated, loading } = useAuth();
 

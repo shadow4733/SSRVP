@@ -3,12 +3,21 @@ import { authAPI } from '../services/authService';
 
 const AuthContext = createContext(null);
 
+/**
+ * Провайдер аутентификации приложения.
+ * @param {{children: React.ReactNode}} props Дочерние элементы приложения.
+ * @returns {JSX.Element}
+ */
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(localStorage.getItem('token'));
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    /**
+     * Проверяет наличие валидного токена и восстанавливает сессию.
+     * @returns {Promise<void>}
+     */
     const checkAuth = async () => {
       const savedToken = localStorage.getItem('token');
       if (savedToken) {
@@ -28,6 +37,12 @@ export const AuthProvider = ({ children }) => {
     checkAuth();
   }, []);
 
+  /**
+   * Выполняет вход пользователя.
+   * @param {string} username Имя пользователя.
+   * @param {string} password Пароль пользователя.
+   * @returns {Promise<Object>} Объект пользователя.
+   */
   const login = async (username, password) => {
     const response = await authAPI.login(username, password);
     const { access_token } = response;
@@ -41,6 +56,13 @@ export const AuthProvider = ({ children }) => {
     return userData;
   };
 
+  /**
+   * Регистрирует нового пользователя и авторизует его.
+   * @param {string} username Имя пользователя.
+   * @param {string} email Email пользователя.
+   * @param {string} password Пароль пользователя.
+   * @returns {Promise<Object>} Объект пользователя.
+   */
   const register = async (username, email, password) => {
     const response = await authAPI.register(username, email, password);
     const { access_token } = response;
@@ -54,6 +76,10 @@ export const AuthProvider = ({ children }) => {
     return userData;
   };
 
+  /**
+   * Завершает текущую пользовательскую сессию.
+   * @returns {void}
+   */
   const logout = () => {
     authAPI.logout();
     setToken(null);
@@ -73,6 +99,18 @@ export const AuthProvider = ({ children }) => {
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
 
+/**
+ * Возвращает объект состояния и методов аутентификации.
+ * @returns {{
+ * user: Object|null,
+ * token: string|null,
+ * loading: boolean,
+ * login: (username: string, password: string) => Promise<Object>,
+ * register: (username: string, email: string, password: string) => Promise<Object>,
+ * logout: () => void,
+ * isAuthenticated: boolean
+ * }}
+ */
 export const useAuth = () => {
   const context = useContext(AuthContext);
   if (!context) {

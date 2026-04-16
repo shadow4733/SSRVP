@@ -3,6 +3,10 @@ import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import '../styles/AuthPages.css';
 
+/**
+ * Страница регистрации пользователя.
+ * @returns {JSX.Element}
+ */
 function RegisterPage() {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
@@ -14,6 +18,11 @@ function RegisterPage() {
   const { register } = useAuth();
   const navigate = useNavigate();
 
+  /**
+   * Обрабатывает отправку формы регистрации.
+   * @param {React.FormEvent<HTMLFormElement>} e Событие отправки формы.
+   * @returns {Promise<void>}
+   */
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');

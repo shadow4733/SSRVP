@@ -11,6 +11,11 @@ L.Icon.Default.mergeOptions({
   shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
 });
 
+/**
+ * Обработчик кликов по карте Leaflet.
+ * @param {{onMapClick: (coords: number[]) => void}} props Пропсы обработчика.
+ * @returns {null}
+ */
 function ClickHandler({ onMapClick }) {
   useMapEvents({
     click(e) {
@@ -20,6 +25,10 @@ function ClickHandler({ onMapClick }) {
   return null;
 }
 
+/**
+ * Ограничивает перемещение карты в заданных границах.
+ * @returns {null}
+ */
 function BoundsEnforcer() {
   const map = useMap();
 
@@ -40,6 +49,18 @@ function BoundsEnforcer() {
 
 const OPPONENT_COLORS = ['#ff6b6b', '#ff9f43', '#f368e0', '#10ac84', '#48dbfb', '#54a0ff'];
 
+/**
+ * Компонент карты игры с маркерами, линиями и кликами соперников.
+ * @param {{
+ * currentCity: Object|null,
+ * guessedCoords: number[]|null,
+ * onMapClick: (coords: number[]) => void,
+ * showLine: boolean,
+ * actualCityCoords: number[]|null,
+ * opponentGuesses?: Object[]
+ * }} props Пропсы карты.
+ * @returns {JSX.Element}
+ */
 const MapComponent = ({
   currentCity,
   guessedCoords,

@@ -6,18 +6,20 @@
   <component name="ChangeListManager">
     <list default="true" id="725bc41c-a2d1-48d5-9700-3a57c006ae2b" name="Changes" comment="created top players">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guess_area/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/guess_area/src/App.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guess_area/src/api/cityApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/guess_area/src/api/cityApi.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guess_area/src/components/Footer.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/guess_area/src/components/Footer.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guess_area/src/components/GamePanel.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/guess_area/src/components/GamePanel.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guess_area/src/components/Header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/guess_area/src/components/Header.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/guess_area/src/components/MapComponent.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/guess_area/src/components/MapComponent.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guess_area/src/components/PrivateRoute.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/guess_area/src/components/PrivateRoute.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guess_area/src/components/Sidebar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/guess_area/src/components/Sidebar.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guess_area/src/context/AuthContext.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/guess_area/src/context/AuthContext.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/guess_area/src/hooks/useCity.js" beforeDir="false" afterPath="$PROJECT_DIR$/guess_area/src/hooks/useCity.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guess_area/src/pages/GamePageWithSession.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/guess_area/src/pages/GamePageWithSession.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guess_area/src/pages/GameSetupPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/guess_area/src/pages/GameSetupPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guess_area/src/hooks/useGame.js" beforeDir="false" afterPath="$PROJECT_DIR$/guess_area/src/hooks/useGame.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guess_area/src/hooks/useHint.js" beforeDir="false" afterPath="$PROJECT_DIR$/guess_area/src/hooks/useHint.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/guess_area/src/services/authService.js" beforeDir="false" afterPath="$PROJECT_DIR$/guess_area/src/services/authService.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/guess_area/src/services/gameSessionService.js" beforeDir="false" afterPath="$PROJECT_DIR$/guess_area/src/services/gameSessionService.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guess_area/src/styles/GameSetup.css" beforeDir="false" afterPath="$PROJECT_DIR$/guess_area/src/styles/GameSetup.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guess_area_api/alembic/env.py" beforeDir="false" afterPath="$PROJECT_DIR$/guess_area_api/alembic/env.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guess_area_api/src/api/game_session.py" beforeDir="false" afterPath="$PROJECT_DIR$/guess_area_api/src/api/game_session.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guess_area_api/src/models/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/guess_area_api/src/models/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guess_area_api/src/models/game_sessions.py" beforeDir="false" afterPath="$PROJECT_DIR$/guess_area_api/src/models/game_sessions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guess_area_api/src/models/user.py" beforeDir="false" afterPath="$PROJECT_DIR$/guess_area_api/src/models/user.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/guess_area_api/src/service/game_session_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/guess_area_api/src/service/game_session_service.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,6 +124,7 @@
       <workItem from="1774623282876" duration="1114000" />
       <workItem from="1774658046449" duration="4457000" />
       <workItem from="1776070172139" duration="3057000" />
+      <workItem from="1776343547674" duration="763000" />
     </task>
     <task id="LOCAL-00001" summary="added readme.md">
       <option name="closed" value="true" />

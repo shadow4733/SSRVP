@@ -1,11 +1,27 @@
 import { useCallback, useState } from 'react';
 import { api } from '../api';
 
+/**
+ * Хук управления текущим городом раунда.
+ * @returns {{
+ * currentCity: Object|null,
+ * loading: boolean,
+ * error: string|null,
+ * fetchRandomCity: () => Promise<void>,
+ * resetCity: () => void,
+ * setCity: (data: Object) => void
+ * }}
+ */
 export const useCity = () => {
   const [currentCity, setCurrentCity] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
+  /**
+   * Нормализует и сохраняет город в локальном состоянии.
+   * @param {Object} data Данные города с бэкенда.
+   * @returns {void}
+   */
   const setCity = useCallback((data) => {
     if (!data?.id) {
       return;
@@ -21,6 +37,10 @@ export const useCity = () => {
     });
   }, []);
 
+  /**
+   * Загружает случайный город с API.
+   * @returns {Promise<void>}
+   */
   const fetchRandomCity = useCallback(async () => {
     setLoading(true);
     setError(null);
@@ -35,6 +55,10 @@ export const useCity = () => {
     }
   }, [setCity]);
 
+  /**
+   * Сбрасывает текущий город и ошибку.
+   * @returns {void}
+   */
   const resetCity = useCallback(() => {
     setCurrentCity(null);
     setError(null);

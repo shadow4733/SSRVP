@@ -6,6 +6,10 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import '../styles/GameResults.css';
 
+/**
+ * Страница итогов завершенной игровой сессии.
+ * @returns {JSX.Element}
+ */
 function GameResultsPage() {
   const { sessionId } = useParams();
   const navigate = useNavigate();
@@ -18,6 +22,10 @@ function GameResultsPage() {
     loadSession();
   }, [sessionId]);
 
+  /**
+   * Загружает данные игровой сессии для отображения результатов.
+   * @returns {Promise<void>}
+   */
   const loadSession = async () => {
     try {
       const data = await gameSessionAPI.getSession(sessionId, token);
@@ -31,6 +39,10 @@ function GameResultsPage() {
     }
   };
 
+  /**
+   * Переводит пользователя к настройке новой игры.
+   * @returns {void}
+   */
   const handlePlayAgain = () => {
     navigate('/game-setup');
   };

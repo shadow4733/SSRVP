@@ -14,6 +14,10 @@ import '../App.css';
 
 const ROUND_TIME_LIMIT_SECONDS = 30;
 
+/**
+ * Основная страница игрового процесса с поддержкой мультиплеера.
+ * @returns {JSX.Element}
+ */
 function GamePage() {
   const { sessionId } = useParams();
   const navigate = useNavigate();
@@ -40,6 +44,12 @@ function GamePage() {
   const myPlayerState = roomState?.players?.find((player) => player.user_id === user?.id) || null;
   const isRoundActive = Boolean(session && currentCity && roundResult === null && !submitting && !isWaitingForStart);
 
+  /**
+   * Загружает город для указанного раунда.
+   * @param {Object|null} targetSession Текущая сессия.
+   * @param {number} roundNumber Номер раунда.
+   * @returns {Promise<void>}
+   */
   const loadCityForRound = useCallback(async (targetSession, roundNumber) => {
     if (targetSession?.multiplayer_room_id) {
       const city = await gameSessionAPI.getSessionRoundCity(sessionId, roundNumber, token);
@@ -49,6 +59,10 @@ function GamePage() {
     await fetchRandomCity();
   }, [sessionId, token, setCity, fetchRandomCity]);
 
+  /**
+   * Загружает сессию и готовит состояние страницы.
+   * @returns {Promise<void>}
+   */
   const loadSession = useCallback(async () => {
     try {
       const data = await gameSessionAPI.getSession(sessionId, token);
@@ -79,12 +93,21 @@ function GamePage() {
     loadSession();
   }, [loadSession]);
 
+  /**
+   * Обрабатывает клик по карте только пока раунд не завершен.
+   * @param {number[]} coords Координаты [lat, lng].
+   * @returns {void}
+   */
   const handleMapClickConditional = (coords) => {
     if (roundResult === null) {
       handleMapClick(coords);
     }
   };
 
+  /**
+   * Загружает следующий город и переключает раунд.
+   * @returns {Promise<void>}
+   */
   const handleFetchCity = async () => {
     if (isWaitingForStart) {
       return;
@@ -105,12 +128,20 @@ function GamePage() {
     setCurrentRound(nextRound);
   };
 
+  /**
+   * Загружает подсказку для текущего города.
+   * @returns {Promise<void>}
+   */
   const handleFetchHint = async () => {
     if (currentCity) {
       await fetchHint(currentCity.id);
     }
   };
 
+  /**
+   * Отправляет ответ игрока и сохраняет результат раунда.
+   * @returns {Promise<void>}
+   */
   const handleSubmit = useCallback(async () => {
     if (isWaitingForStart) return;
     if (!currentCity || !guessedCoords || roundResult !== null) return;
@@ -140,6 +171,10 @@ function GamePage() {
     }
   }, [isWaitingForStart, currentCity, guessedCoords, roundResult, submitGuess, sessionId, currentRound, token]);
 
+  /**
+   * Завершает раунд по таймеру и фиксирует автопропуск.
+   * @returns {Promise<void>}
+   */
   const handleRoundTimeout = useCallback(async () => {
     if (
       !session ||
@@ -222,6 +257,10 @@ function GamePage() {
     }
 
     let cancelled = false;
+    /**
+     * Обновляет состояние мультиплеерной комнаты.
+     * @returns {Promise<void>}
+     */
     const fetchRoomState = async () => {
       try {
         const data = await gameSessionAPI.getMultiplayerRoom(session.multiplayer_room_id, token);
@@ -258,6 +297,10 @@ function GamePage() {
     }
 
     let cancelled = false;
+    /**
+     * Загружает клики игроков за текущий раунд.
+     * @returns {Promise<void>}
+     */
     const fetchRoundGuesses = async () => {
       try {
         const guesses = await gameSessionAPI.getMultiplayerRoundGuesses(
@@ -288,6 +331,10 @@ function GamePage() {
     (guess) => guess.user_id !== user?.id && guess.guessed_lat !== null && guess.guessed_lng !== null
   );
 
+  /**
+   * Помечает текущего игрока готовым к старту матча.
+   * @returns {Promise<void>}
+   */
   const handleReadyUp = async () => {
     if (!session?.multiplayer_room_id || readySubmitting) {
       return;

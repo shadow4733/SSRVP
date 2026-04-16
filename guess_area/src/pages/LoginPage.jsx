@@ -3,6 +3,10 @@ import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import '../styles/AuthPages.css';
 
+/**
+ * Страница входа пользователя.
+ * @returns {JSX.Element}
+ */
 function LoginPage() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -12,6 +16,11 @@ function LoginPage() {
   const { login } = useAuth();
   const navigate = useNavigate();
 
+  /**
+   * Обрабатывает отправку формы входа.
+   * @param {React.FormEvent<HTMLFormElement>} e Событие отправки формы.
+   * @returns {Promise<void>}
+   */
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');

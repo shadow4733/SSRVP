@@ -1,11 +1,26 @@
 import { useState } from 'react';
 import { api } from '../api';
 
+/**
+ * Хук для получения и хранения подсказки текущего раунда.
+ * @returns {{
+ * hint: string|null,
+ * loading: boolean,
+ * error: string|null,
+ * fetchHint: (cityId: number|string) => Promise<void>,
+ * resetHint: () => void
+ * }}
+ */
 export const useHint = () => {
   const [hint, setHint] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
+  /**
+   * Загружает подсказку для выбранного города.
+   * @param {number|string} cityId Идентификатор города.
+   * @returns {Promise<void>}
+   */
   const fetchHint = async (cityId) => {
     setLoading(true);
     setError(null);
@@ -22,6 +37,10 @@ export const useHint = () => {
     }
   };
 
+  /**
+   * Сбрасывает подсказку и ошибку загрузки.
+   * @returns {void}
+   */
   const resetHint = () => {
     setHint(null);
     setError(null);

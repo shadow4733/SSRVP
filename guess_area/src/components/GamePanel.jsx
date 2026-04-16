@@ -1,5 +1,22 @@
 import React from 'react';
 
+/**
+ * Правая игровая панель управления раундом.
+ * @param {{
+ * currentCity: Object|null,
+ * hint: string|null,
+ * lastResult: Object|null,
+ * guessedCoords: number[]|null,
+ * loading: boolean,
+ * hintLoading: boolean,
+ * submitting: boolean,
+ * timeLeft?: number|null,
+ * onFetchCity: () => void|Promise<void>,
+ * onFetchHint: () => void|Promise<void>,
+ * onSubmit: () => void|Promise<void>
+ * }} props Пропсы панели.
+ * @returns {JSX.Element}
+ */
 const GamePanel = ({
   currentCity,
   hint,

@@ -3,6 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import '../styles/AuthPages.css';
 
+/**
+ * Стартовая страница приложения для выбора входа или регистрации.
+ * @returns {JSX.Element}
+ */
 function WelcomePage() {
   const navigate = useNavigate();
   const { isAuthenticated, user } = useAuth();
